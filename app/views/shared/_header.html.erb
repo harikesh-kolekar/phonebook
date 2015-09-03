@@ -1,0 +1,64 @@
+<style type="text/css">
+ .linkStyle.active{
+  background:#258ace;
+  border-top-color:#258ace;
+}
+</style>
+
+                <nav class="navbar navbar-default navbar-fixed" id = "header" style="height: 65px; background-color: #F5EBEB;">
+                    <div class="container">
+                        <div class="navbar-header page-scroll">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            
+                            
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse" style="margin-top: 10px;">
+                            <ul class="nav navbar-nav">
+                                <li ><a href="#" style="padding: 10px 20px; margin-right: 10px; border-radius: 10px;" class="btn btn-default btn-md linkStyle"><i class="fa fa-user"></i> Profile</a></li>
+                                
+                                <li class="dropdown"><a href="#" style="padding: 10px 20px; margin-right: 10px; border-radius: 10px;" class="dropdown-toggle btn btn-default btn-md linkStyle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Users <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" style="background-color: #F5EBEB; border-radius: 10px;margin-left: -20%; margin-top: 1%;">
+                                            <li style="margin-right: 5px; margin-left: 5px; margin-bottom: 3px;"><a href="#" class="btn btn-default btn-md linkStyle" style="padding: 8px; border-radius: 10px;"><i class="fa fa-users"></i> All</a></li>
+                                            <li style="margin-right: 5px; margin-left: 5px; margin-bottom: 3px;"><a href="#" class="btn btn-default btn-md linkStyle" style="padding: 8px; border-radius: 10px;"><i class="fa fa-pause"></i> Pending</a></li>
+                                            <li style="margin-right: 5px; margin-left: 5px; margin-bottom: 3px;"><a href="#" class="btn btn-default btn-md linkStyle" style="padding: 8px; border-radius: 10px;"><i class="fa fa-thumbs-up"></i> Approved</a></li>
+                                            <li style="margin-right: 5px; margin-left: 5px; margin-bottom: 3px;"><a href="#" class="btn btn-default btn-md linkStyle" style="padding: 8px; border-radius: 10px;"><i class="fa fa-thumbs-down"></i> Declined</a></li>
+                                            
+                                        </ul>
+                                    </li>
+
+                                    <li style="margin-right: 10px;"><a href="notifications" style="padding: 10px 20px; border-radius: 10px;" class="btn btn-default btn-md linkStyle"><i class="fa fa-comments"></i> Notification</a></li>
+
+                                    <li style="margin-right: 10px;"><a href="/gallaries" style="padding: 10px 20px; border-radius: 10px;" class="btn btn-default btn-md linkStyle"><i class="fa fa-picture-o"></i> Gallary</a></li>
+                                    
+                            </ul>
+                            <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown"><a href="#" style="padding: 10px 20px; margin-right: 10px; border-radius: 10px;" class="addme dropdown-toggle btn btn-default btn-md linkStyle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i> Setting<span class="caret"></span></a>
+                              <ul class="dropdown-menu" style="background-color: #F5EBEB; border-radius: 10px; margin-left: -30%; margin-top: 1%;">
+                                <li style="margin-right: 5px; margin-left: 5px;"> <%= link_to " Change Password", "/change_password", :remote=>true, :style => "padding: 10px 20px; border-radius: 10px;", :class => "btn btn-default btn-md fa fa-key linkStyle" %></li>
+                              </ul>
+                                <li style="margin-right: 10px;"><%= link_to "Logout", destroy_admin_session_path, :method=>"delete", :style => "padding: 10px 20px; border-radius: 10px;", :class => "addme btn btn-default btn-md  fa fa-sign-out linkStyle" %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+<!-- 
+
+ <script type="text/javascript">  
+  $(document).ready(function(){
+     $(".linkStyle").click(function() {    
+        $('.linkStyle.active').removeClass('active');
+        $(this).addClass('active');   
+      });
+  });
+</script>
+ -->
+
+  
+<div id="modal_html">
+</div>
+  

@@ -1,0 +1,35 @@
+$("#modal_html" )[0].innerHTML="<%= escape_javascript(render 'form') %>";
+$('#editnotification').modal('show');
+
+function ValidateFileUpload() {
+	var fuData = document.getElementById('notification_attachment');
+	var FileUploadPath = fuData.value;
+
+    var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+    if (Extension == "doc" || Extension == "docx" || Extension == "msg"
+                || Extension == "odt" || Extension == "pages" || Extension == "tar" || Extension == "pdf" || Extension == "vcf" || Extension == "csv" || Extension == "indd") {
+            if (fuData.files && fuData.files[0]) {
+
+                var size = fuData.files[0].size;
+
+                if(size > MAX_SIZE){
+                    alert("Maximum file size exceeds");
+                    return;
+                }else{
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('.errorr').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(fuData.files[0]);
+                }
+            }
+    } 
+else {
+        show_error("Photo only allows file types of doc, docx, msg, odt, pages, tar, pdf, vcf, csv, and indd ");
+        return false;
+    }
+ 
+ return true
+}

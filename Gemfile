@@ -20,6 +20,8 @@ group :development, :test do
   gem 'sqlite3'
   gem 'minitest'
   gem 'thor'
+  gem 'annotate'
+  gem "better_errors"
 end
 
 # Add support for the MySQL
@@ -65,4 +67,10 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem 'will_paginate'
+gem 'rubyXL'
+gem "spreadsheet_on_rails"
+gem 'devise'
+gem "paperclip"
+gem 'rabl'
+gem 'oj'

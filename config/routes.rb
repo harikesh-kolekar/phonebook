@@ -1,4 +1,25 @@
 Rails.application.routes.draw do
+
+
+  namespace :api do
+  namespace :v1 do
+      resources :notifications
+      resources :gallaries
+      get "districts/index"
+    end
+  end
+
+  resources :notifications
+  resources :gallaries
+  get 'changepassword/index'
+
+  get 'changepassword/update'
+
+  devise_for :admins
+  root 'home#index'
+  post 'change_password' => 'changepassword#update' 
+  get 'change_password' => 'changepassword#edit' 
+  get 'profiles' => 'profiles#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
