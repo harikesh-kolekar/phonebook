@@ -15,14 +15,7 @@
 // require turbolinks
 //= require bootstrap.min.js
 //= require jquery.dataTables
- $(document).on('page:load', function() {
-      $('#table').DataTable({
-        
-        bProcessing: true,
-          bServerSide: true,
-          sAjaxSource: $('#products').data('source')
-        });
-     } );
+ 
 $(document).ready(function() {
       $('#table').DataTable({
         
@@ -30,9 +23,8 @@ $(document).ready(function() {
           bServerSide: true,
           sAjaxSource: $('#products').data('source')
         });
+      $('#example').DataTable()
      } );
-
-
 
 function show_error(message)
   {
