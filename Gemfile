@@ -22,6 +22,7 @@ group :development, :test do
   gem 'thor'
   gem 'annotate'
   gem "better_errors"
+  gem 'pry'
 end
 
 # Add support for the MySQL

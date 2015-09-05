@@ -4,8 +4,11 @@ class NotificationsController < AdminController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
-    @notification = Notification.new
+    respond_to do |format|
+      format.html { @notification = Notification.new}
+      format.json { render json: NotificationsDatatable.new(view_context) }
+   end
+    
   end
 
   # GET /notifications/1

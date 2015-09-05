@@ -12,13 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require bootstrap.min.js
 //= require jquery.dataTables
- $(document).ready(function() {
+ $(document).on('page:load', function() {
       $('#table').DataTable({
-        sPaginationType: "full_numbers",
-        bJQueryUI: true,
+        
+        bProcessing: true,
+          bServerSide: true,
+          sAjaxSource: $('#products').data('source')
+        });
+     } );
+$(document).ready(function() {
+      $('#table').DataTable({
+        
         bProcessing: true,
           bServerSide: true,
           sAjaxSource: $('#products').data('source')
@@ -26,9 +33,7 @@
      } );
 
 
-$(document).ready(function() {
-      $('#example').DataTable();
-     } );
+
 function show_error(message)
   {
       $("#error")[0].innerHTML  = '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>' + message + ' </div>';
