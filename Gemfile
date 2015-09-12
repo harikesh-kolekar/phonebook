@@ -70,7 +70,10 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 gem 'will_paginate'
 gem 'rubyXL'
-gem "spreadsheet_on_rails"
+gem "spreadsheet"
+gem "iconv", "~> 1.0.3"
+gem 'roo'
+gem 'roo-xls'
 gem 'devise'
 gem "paperclip"
 gem 'rabl'
