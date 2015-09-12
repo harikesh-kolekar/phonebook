@@ -15,6 +15,9 @@
 // require turbolinks
 //= require bootstrap.min.js
 //= require jquery.dataTables
+//= require moment.min.js
+//= require daterangepicker.js
+
  
 $(document).ready(function() {
       $('#table').DataTable({

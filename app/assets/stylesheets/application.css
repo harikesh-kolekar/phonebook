@@ -19,6 +19,7 @@
  * require theme
  * require demo_table_jui
  *= require jquery.dataTables
+ *= require daterangepicker.css
 
  */
 

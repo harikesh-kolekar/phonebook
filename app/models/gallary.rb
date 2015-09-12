@@ -3,13 +3,13 @@
 # Table name: gallaries
 #
 #  id                 :integer          not null, primary key
-#  photo_file_name    :string
-#  photo_content_type :string
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
 #  photo_file_size    :integer
 #  photo_updated_at   :datetime
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  name               :string
+#  title              :string(255)
 #
 
 class Gallary < ActiveRecord::Base

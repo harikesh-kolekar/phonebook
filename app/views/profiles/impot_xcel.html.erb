@@ -1,0 +1,4 @@
+<%= form_tag "/profiles/upload_excel", multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "upload" %>
+<% end %>

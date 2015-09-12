@@ -1,4 +1,11 @@
 @import url("/assets/font-awesome.min.css");
+.profile_image{
+    width:40px;
+}
+.action-glyphicon {
+    font-size: 20px;
+  }
+
 /* HERE STARTS THE MAGIC */
 header {
     text-align: center;
@@ -13,6 +20,7 @@ header {
     top: 0;
     left: 0;
 }
+
 
 .content-wrapper{
     background-color: white;

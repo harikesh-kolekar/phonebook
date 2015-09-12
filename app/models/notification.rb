@@ -3,11 +3,11 @@
 # Table name: notifications
 #
 #  id                      :integer          not null, primary key
-#  title                   :string
+#  title                   :string(255)
 #  description             :text
-#  notification_type       :string
-#  attachment_file_name    :string
-#  attachment_content_type :string
+#  notification_type       :string(255)
+#  attachment_file_name    :string(255)
+#  attachment_content_type :string(255)
 #  attachment_file_size    :integer
 #  attachment_updated_at   :datetime
 #  created_at              :datetime         not null
