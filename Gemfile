@@ -25,6 +25,7 @@ group :development, :test do
   gem 'pry'
 end
 
+
 # Add support for the MySQL
 group :production, :mysql do
   gem 'mysql2'
