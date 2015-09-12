@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'changepassword/update'
 
   devise_for :admins
-  root 'home#index'
+  root 'profiles#index'
   post 'change_password' => 'changepassword#update' 
   get 'change_password' => 'changepassword#edit' 
   # The priority is based upon order of creation: first created -> highest priority.
