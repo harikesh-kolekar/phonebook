@@ -38,9 +38,11 @@
 #  updated_at             :datetime         not null
 #  home_district          :string(255)      default("NA")
 #  posting_district       :string(255)      default("NA")
+#  authentication_token   :string(255)
 #
 # Indexes
 #
+#  index_users_on_authentication_token  (authentication_token) UNIQUE
 #  index_users_on_mobile_no1            (mobile_no1) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
@@ -49,7 +51,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => {email: false, login: true}
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => {email: false, login: true}
+
+   validates :email, uniqueness: true, allow_blank: true
+   validates :mobile_no1, uniqueness: true, presence: true
+   validates :mobile_no2, uniqueness: true, allow_blank: true
+   validates :imei_code, uniqueness: true, allow_blank: true
+   validates :gcm_api_key, uniqueness: true, allow_blank: true
 
    # belongs_to :home_taluka, :foreign_key => "home_taluka_id", :class_name=>"Taluka"
    # belongs_to :posting_taluka, :foreign_key => "posting_taluka_id", :class_name=>"Taluka"
@@ -64,38 +72,42 @@ def self.import(file)
 	workbook = RubyXL::Parser.parse(file)
 	worksheet = workbook[0]
 	data = worksheet.extract_data
-
+  not_saved = []
   (1...data.length).each do |i|
-  	next if User.where("mobile_no1=? or mobile_no2=? or mobile_no1=? or mobile_no2=?",data[i][2], data[i][2], data[i][3], data[i][3]).first
-    u = User.new(:password=>"123456789")
-    u.name = data[i][0]
-    u.designation = data[i][1]
-    if data[i][2].blank?
-    	if data[i][3].blank?
-    		next
-    	else
-    		u.mobile_no1 = data[i][3]
-    	end
-    else
-    	u.mobile_no1 = data[i][2]
-    	u.mobile_no2 = data[i][3]
-    end
-    u.phone_no = data[i][4]
-    u.present_post = data[i][5]
-    u.posting_district = data[i][6]
-    u.posting_taluka = data[i][7]
-    u.home_district = data[i][8]
-    u.home_taluka = data[i][9]
-    u.batch = data[i][10]
-    u.date_of_join_dept = self.convert_string_to_date data[i][11]
-    u.posting_date = self.convert_string_to_date data[i][12]
-    u.date_of_birth = self.convert_string_to_date data[i][13]
-    u.email = data[i][14]
-    u.education = data[i][15]
-    u.other_info = data[i][16]
+    begin
+      if  (data[i][2].blank? && data[i][3].blank?) || (!data[i][2].blank? && get_user(data[i][2])) || (!data[i][3].blank? && get_user(data[i][3]))
+        not_saved<<i+1
+        next
+      end  
+      u = User.new(:password=>"123456789")
+      u.name = data[i][0]
+      u.designation = data[i][1]
+      if data[i][2].blank?
+      		u.mobile_no1 = data[i][3]
+      else
+      	u.mobile_no1 = data[i][2]
+      	u.mobile_no2 = data[i][3]
+      end
+      u.phone_no = data[i][4]
+      u.present_post = data[i][5]
+      u.posting_district = data[i][6]
+      u.posting_taluka = data[i][7]
+      u.home_district = data[i][8]
+      u.home_taluka = data[i][9]
+      u.batch = data[i][10]
+      u.date_of_join_dept = self.convert_string_to_date data[i][11]
+      u.posting_date = self.convert_string_to_date data[i][12]
+      u.date_of_birth = self.convert_string_to_date data[i][13]
+      u.email = data[i][14]
+      u.education = data[i][15]
+      u.other_info = data[i][16]
 
-    u.save
+      u.save!
+    rescue Exception => e
+      not_saved<<i+1
+    end
   end
+  return not_saved
 end
 
 	def self.convert_string_to_date(str)
@@ -126,5 +138,9 @@ end
 	  		return self.mobile_no1 + "/ " + self.mobile_no2
 	  	end
 	  end
+
+    def self.get_user(mobile)
+      User.where("mobile_no1=? or mobile_no2=? ",mobile, mobile).first
+    end
 
 end

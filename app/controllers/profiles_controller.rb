@@ -15,9 +15,11 @@ def upload_excel
     directory = "#{Rails.root}/public/xls_uploads/"
     path = File.join(directory, name)
     File.open(path, "wb") { |f| f.write(params[:file].read) }
-    data = User.import(path)
+    not_saved = User.import(path)
+    message = 'Profiles imported successfully.'
+    message += "except row #{not_saved.join(' ,')}" unless not_saved.length>0
     FileUtils.rm(path)
-	redirect_to root_url, notice: "Products imported."
+	redirect_to root_url, notice: "Profiles imported."
 	
 end
 

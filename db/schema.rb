@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907172551) do
+ActiveRecord::Schema.define(version: 20150913092328) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -131,8 +131,10 @@ ActiveRecord::Schema.define(version: 20150907172551) do
     t.datetime "updated_at",                            null: false
     t.string   "home_district",          default: "NA"
     t.string   "posting_district",       default: "NA"
+    t.string   "authentication_token"
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
   add_index "users", ["mobile_no1"], name: "index_users_on_mobile_no1", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

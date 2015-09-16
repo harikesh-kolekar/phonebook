@@ -1,5 +1,15 @@
+
+
+
+
+<%= form_for @use do |f| %>
+
+  <%= f.lable :first_name ,"First Name" %>
+  <%= f.text_field :first_name  %>
 <input type="text" name="birthdate" value="" />
- 
+
+<% end %>
+
 <script type="text/javascript">
 $(function() {
     $('input[name="birthdate"]').daterangepicker({

@@ -1,4 +1,4 @@
-class Api::V1::GallariesController < ApplicationController
+class Api::V1::GallariesController < Api::V1::ApiController
   def index
   	@gallaries = Gallary.paginate(:page => params[:page])
   end

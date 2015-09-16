@@ -11,6 +11,15 @@ Rails.application.routes.draw do
       resources :notifications
       resources :gallaries
       get "districts/index"
+      get "districts" => 'profiles#index' 
+      resources :users do
+        post :login, :on => :collection
+        post :logout, :on => :collection
+        post :userupdate, :on => :collection
+        post :resetpassword, :on => :collection 
+        post :forgotpassword, :on => :collection
+        post :profile, :on => :collection
+      end
     end
   end
 

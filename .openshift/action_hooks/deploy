@@ -32,6 +32,22 @@ else
   fi
 fi
 
+STORED_ASSETS="${OPENSHIFT_DATA_DIR}/system" LIVE_ASSETS="${OPENSHIFT_REPO_DIR}/public/system"
+
+# Ensure our stored system directory exists
+if [ ! -d "${STORED_ASSETS}" ]; then
+echo " Creating permanent system directory"
+mkdir "${STORED_ASSETS}"
+fi
+
+# Create symlink to stored system unless we're uploading our own system
+if [ -d "${LIVE_ASSETS}" ]; then
+echo " WARNING: Assets included in git repository, not using stored system"
+else
+echo " Restoring stored system"
+ln -sf "${STORED_ASSETS}" "${LIVE_ASSETS}"
+fi
+
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
 echo "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
 ruby_with_nodejs_context "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"

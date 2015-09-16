@@ -79,3 +79,4 @@ gem 'devise'
 gem "paperclip"
 gem 'rabl'
 gem 'oj'
+gem 'devise-token_authenticatable'
