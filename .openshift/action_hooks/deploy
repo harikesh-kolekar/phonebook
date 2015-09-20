@@ -49,6 +49,10 @@ ln -sf "${STORED_ASSETS}" "${LIVE_ASSETS}"
 fi
 
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+echo "bundle exec rake db:drop RAILS_ENV=${RAILS_ENV:-production}"
+ruby_with_nodejs_context "bundle exec rake db:drop RAILS_ENV=${RAILS_ENV:-production}"
+echo "bundle exec rake db:create RAILS_ENV=${RAILS_ENV:-production}"
+ruby_with_nodejs_context "bundle exec rake db:create RAILS_ENV=${RAILS_ENV:-production}"
 echo "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
 ruby_with_nodejs_context "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
 echo "bundle exec rake db:seed RAILS_ENV=${RAILS_ENV:-production}"
