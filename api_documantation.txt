@@ -6,3 +6,4 @@ create User::
 -----------------------------------------------------------------------------------------------
 URL :: /api/v1/users.json
 input Post
+{"user":{"email": "harikeshkolekar@gmail.com","mobile_no1":"9561840902","password":"Harry@123","gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","name":"Harikesh Kolekar"}}
