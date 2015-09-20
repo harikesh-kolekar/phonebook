@@ -24,7 +24,7 @@ private
         notification.description,
         notification.notification_type,
         filename,
-        "",
+        '<div class="action-glyphicon"><a data-remote="true" href="/notifications/'+notification.id.to_s+'/edit.js"><i class="fa fa-pencil"></i></a> <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/notifications/'+notification.id.to_s+'"><i class="fa fa-trash-o"></i></a></div>',
       ]
     end
   end

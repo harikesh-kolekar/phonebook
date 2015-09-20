@@ -65,9 +65,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Jamkhed")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -91,9 +89,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Barshitakli")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -138,9 +134,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Tiosa")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -170,9 +164,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Paithan")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -208,9 +200,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Ambejogai")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -234,9 +224,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Lakhandur")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -278,9 +266,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Lonar")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -328,9 +314,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Jivati")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -345,9 +329,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Shirpur")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -386,9 +368,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Sironcha")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -415,9 +395,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Deori")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -435,9 +413,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Aundha Nagnath")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -485,9 +461,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Chalisgaon")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -514,9 +488,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Mantha")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -555,9 +527,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Ajra")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -590,17 +560,13 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Udgir")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
 
 d=District.find_or_create_by(:name=>"Mumbai")
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -615,17 +581,13 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Borivali")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
 
 d=District.find_or_create_by(:name=>"NA")
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -673,9 +635,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Bhiwapur")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -726,9 +686,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Naigaon (Khairgaon)")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -749,9 +707,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Akrani")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -799,9 +755,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Yeola")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -828,9 +782,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Kalamb")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -860,9 +812,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Pathri")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -910,9 +860,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Daund")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -960,9 +908,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Mhasla")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -992,9 +938,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Khed")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -1030,9 +974,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Kadegaon")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -1068,9 +1010,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Satara")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -1097,9 +1037,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Devgad")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -1138,9 +1076,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Mangalvedhe")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -1188,9 +1124,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Ambarnath")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -1217,9 +1151,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Samudrapur")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -1240,9 +1172,7 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Manora")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")
 
 
 
@@ -1293,6 +1223,4 @@ t.save
 t=Taluka.find_or_create_by(:name=>"Zari Jamani")
 t.district_id=d.id
 t.save
-t=Taluka.find_or_create_by(:name=>"NA")
-t.district_id=d.id
-t.save
+t=Taluka.find_or_create_by(:district_id=>d.id, :name=>"NA")

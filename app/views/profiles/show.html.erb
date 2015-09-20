@@ -1,0 +1,147 @@
+<center><h3><%= @user.name %> Profile</h3></center>
+<hr>
+<div class="container">
+<%= form_for @user, :class => "form-horizontal", :url=>profiles_path do |f| %>
+  
+  <div class="form-group col-md-6">
+  
+         <%= label " ", :photo, "Photo:",:class => "col-sm-3 control-label"  %>
+     <div class="col-sm-8">
+     
+        <%= image_tag @user.photo.url(:thumb), :height=>"100px" %><br/>
+     
+        
+     </div>
+  </div>
+  
+  <div class="form-group col-md-6">
+            <%= label " ", :icard, "I-card:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+         
+        <%= image_tag @user.icard.url(:thumb),:class=>"pull-left", :height=>"100px" %><br/>
+      
+          
+    </div>
+  </div>
+
+<div class="form-group col-md-6">
+       <%= label " ", :batch, "Batch:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+        <%= f.text_field :batch, :disabled=>"disabled", :class => "form-control"  %>
+    </div>	
+  </div> 	 	
+  
+  <div class="form-group col-md-6">	
+         <%= label " ", :email, "Email:",:class => "col-sm-3 control-label"  %>
+     <div class="col-sm-8">
+         <%= f.text_field :email, :disabled=>"disabled",:class => "form-control" %>
+      </div>
+  </div>
+ 
+  <div class="form-group col-md-6">
+      <%= label " ", :mobile_no1, "Mobile No 1:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+      <%= f.text_field :mobile_no1, :disabled=>"disabled", :class => "form-control"%>
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+
+       <%= label " ", :mobile_no2, "Mobile No 2:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+       <%= f.text_field :mobile_no2, :disabled=>"disabled", :class => "form-control"%>
+    </div>
+  </div>
+   
+  <div class="form-group col-md-6">
+    <%= label " ", :date_of_birth, "DOB:",:class => "col-sm-3 control-label" %>
+      <div class="col-sm-8">
+        <%= f.text_field :date_of_birth, :disabled=>"disabled", :class => "form-control", :value=>date_to_string(@user.date_of_birth) %>
+      </div>
+  </div>
+  
+  <div class="form-group col-md-6">
+      <%= label " ", :phone_no, "Phone No:",:class => "col-sm-3 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :phone_no, :disabled=>"disabled", :class => "form-control"  %>
+    </div>
+  </div>
+
+ 
+  <div class="form-group col-md-6">
+        <%= label " ", :education, "Education:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+        <%= f.text_field :education, :disabled=>"disabled", :class => "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group col-md-6">
+        <%= label " ", :designation, "Designation:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+        <%= f.text_field :designation, :disabled=>"disabled", :class => "form-control"  %>
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+       <%= label " ", :home_district, "Home District:",:class => "col-sm-3 control-label"  %>
+     <div class="col-sm-8 dropdown">
+       <%= f.text_field :home_district, :disabled=>"disabled", :class => "form-control" %>
+     </div>
+  </div>
+  
+  <div class="form-group col-md-6">
+        <%= label " ", :home_taluka, "Home Taluka:",:class => "col-sm-3 control-label"  %>
+     <div class="col-sm-8">
+        <%= f.text_field :home_taluka, :disabled=>"disabled", :class => "form-control"  %>
+     </div>
+  </div>
+
+  <div class="form-group col-md-6">
+         <%= label " ", :posting_district, "Posting District:",:class => "col-sm-3 control-label"  %>
+      <div class="col-sm-8">
+         <%= f.text_field :posting_district, :disabled=>"disabled", :class => "form-control" %>
+      </div>
+   </div>
+
+  <div class="form-group col-md-6">
+  
+       <%= label " ", :posting_taluka, "Posting Taluka:",:class => "col-sm-3 control-label"  %>
+   <div class="col-sm-8">
+       <%= f.text_field :posting_taluka, :disabled=>"disabled", :class => "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group col-md-6">
+        <%= label " ", :present_post, "Present Post:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">	
+        <%= f.text_field :present_post, :disabled=>"disabled", :class => "form-control"  %>
+    </div>
+  </div>
+ 
+ <div class="form-group col-md-6">
+       <%= label " ", :posting_date, "Posting Date:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+       <%= f.text_field :posting_date, :disabled=>"disabled", :class => "form-control", :value=>date_to_string(@user.posting_date) %>
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+        <%= label " ", :date_of_join_dept, "Joining date:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+       <%= f.text_field :date_of_join_dept, :disabled=>"disabled", :class => "form-control", :value=>date_to_string(@user.date_of_join_dept)  %>
+    </div>
+  </div>
+ 
+  
+
+  <div class="form-group col-md-6">
+        <%= label " ", :other_info, "Other Info:",:class => "col-sm-3 control-label"  %>
+    <div class="col-sm-8">
+        <%= f.text_field :other_info, :disabled=>"disabled", :class => "form-control"  %>
+    </div>
+  </div>
+
+  
+<% end %>
+ </div>
+

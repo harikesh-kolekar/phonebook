@@ -17,11 +17,17 @@ def upload_excel
     File.open(path, "wb") { |f| f.write(params[:file].read) }
     not_saved = User.import(path)
     message = 'Profiles imported successfully.'
-    message += "except row #{not_saved.join(' ,')}" unless not_saved.length>0
+    message += "except row #{not_saved.join(' ,')}." if not_saved.length>0
     FileUtils.rm(path)
-	redirect_to root_url, notice: "Profiles imported."
+	redirect_to root_url, notice: message
 	
 end
+
+def get_talukas
+  user = District.find_by_name(params[:name])
+  @home_district = user.talukas
+end
+
 
 # DELETE /notifications/1
   # DELETE /notifications/1.json
@@ -41,27 +47,46 @@ end
 
   # GET /users/new
   def new
-    @use = User.new
-   
+    @user = User.new
+    @home_district = District.find_by_name("NA")
+    @home_talukas = @home_district.talukas
+    @home_taluka="NA"
+    @posting_district = @home_district
+    @posting_talukas = @home_talukas
+    @posting_taluka="NA"
+   @url = profiles_path
   end
 
   # GET /uses/1/edit
   def edit
-    
+    @home_district = District.find_by_name(@user.home_district) rescue nil
+    @home_district = District.find_by_name("NA") if @home_district.nil?
+    @home_talukas = @home_district.talukas
+    @home_taluka = @home_talukas.find_by_name(@user.home_taluka) rescue nil
+    @home_taluka = "NA" if @home_taluka.nil?
+    @posting_district = District.find_by_name(@user.posting_district) rescue nil
+    @posting_district = District.find_by_name("NA") if @posting_district.nil?
+    @posting_talukas = @posting_district.talukas
+    @posting_taluka = @posting_talukas.find_by_name(@user.posting_taluka) rescue nil
+    @posting_taluka = "NA" if @posting_taluka.nil?
+    @url = profile_path(@user)
   end
 
   # POST /uses
   # POST /uses.json
   def create
-    @use = User.new(use_params)
-
+    @user = User.new(user_params)
+    @user.date_of_birth = string_to_date(params[:user][:date_of_birth]) 
+    @user.date_of_join_dept = string_to_date(params[:user][:date_of_join_dept]) 
+    @user.posting_date = string_to_date(params[:user][:posting_date]) 
+    @user.password = "123456789"
     respond_to do |format|
-      if @use.save!
-        format.html { redirect_to profile_url, notice: 'Profile was successfully created.' }
-        format.json { render :show, status: :created, location: @use }
+      if @user.save!
+        format.html { redirect_to profiles_url, notice: 'Profile was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
-        format.json { render json: @use.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,9 +94,14 @@ end
   # PATCH/PUT /notifications/1
   # PATCH/PUT /notifications/1.json
   def update
+    update_user_params = user_params
+    update_user_params["date_of_birth"] = string_to_date(params[:user][:date_of_birth]) 
+    update_user_params["date_of_join_dept"] = string_to_date(params[:user][:date_of_join_dept]) 
+    update_user_params["posting_date"] = string_to_date(params[:user][:posting_date]) 
+
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to users_url, notice: 'Profile was successfully updated.' }
+      if @user.update(update_user_params)
+        format.html { redirect_to profiles_url, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -87,8 +117,8 @@ private
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def users_params
-      params.require(:user).permit(:title, :description, :notification_type, :attachment)
+    def user_params
+      params.require(:user).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :imei_code, :gcm_api_key, :home_district, :posting_district, :email, :photo, :icard )
     end
 
 end

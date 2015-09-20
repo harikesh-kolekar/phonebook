@@ -1,23 +1,2 @@
-
-
-
-
-<%= form_for @use do |f| %>
-
-  <%= f.lable :first_name ,"First Name" %>
-  <%= f.text_field :first_name  %>
-<input type="text" name="birthdate" value="" />
-
-<% end %>
-
-<script type="text/javascript">
-$(function() {
-    $('input[name="birthdate"]').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        locale: {
-            format: 'DD/MM/YYYY'
-        }
-    });
-});
-</script>
+<center><h3>Create New Profile</h3></center>
+<%= render 'form' %>

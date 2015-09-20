@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   get 'users/:type' => 'users#index', :as => "users"
-
+  get 'users/:user_id/:status' => 'users#updat_status', :as => "updat_status_user"
  
 
   devise_for :users
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :notifications
       resources :gallaries
       get "districts/index"
-      get "districts" => 'profiles#index' 
+      get "profiles" => 'profiles#index' 
       resources :users do
         post :login, :on => :collection
         post :logout, :on => :collection
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :profiles do
     get "impot_xcel", on: :collection
     post "upload_excel", on: :collection
+    get 'get_talukas', :on => :collection
   end
   resources :notifications
   resources :gallaries

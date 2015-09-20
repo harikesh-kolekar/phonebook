@@ -4,6 +4,9 @@ class Api::V1::ApiController < ActionController::Base
 	rescue_from ::Exception, with: :error_occurred
 
 	protected
+		def string_to_date(date)
+			Date.strptime(date,"%d/%m/%Y") rescue ''
+	    end
 
 		def debug
 			print " ==== params = #{params.to_json} ===== "

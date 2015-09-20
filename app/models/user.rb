@@ -24,7 +24,7 @@
 #  date_of_join_dept      :date
 #  present_post           :string(255)
 #  posting_taluka         :string(255)      default("NA")
-#  posting_date           :string(255)
+#  posting_date           :date(255)
 #  batch                  :string(255)
 #  other_info             :string(255)
 #  imei_code              :string(255)
@@ -39,6 +39,10 @@
 #  home_district          :string(255)      default("NA")
 #  posting_district       :string(255)      default("NA")
 #  authentication_token   :string(255)
+#  icard_file_name        :string(255)
+#  icard_content_type     :string(255)
+#  icard_file_size        :integer
+#  icard_updated_at       :datetime
 #
 # Indexes
 #
@@ -51,20 +55,24 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :authentication_keys => {email: false, login: true}
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable#, :authentication_keys => {email: false, login: true}
 
-   validates :email, uniqueness: true, allow_blank: true
    validates :mobile_no1, uniqueness: true, presence: true
    validates :mobile_no2, uniqueness: true, allow_blank: true
    validates :imei_code, uniqueness: true, allow_blank: true
    validates :gcm_api_key, uniqueness: true, allow_blank: true
 
+   has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/profile.png"
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
+  has_attached_file :icard, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/i-card.png"
+  validates_attachment_content_type :icard, content_type: /\Aimage\/.*\Z/
+
    # belongs_to :home_taluka, :foreign_key => "home_taluka_id", :class_name=>"Taluka"
    # belongs_to :posting_taluka, :foreign_key => "posting_taluka_id", :class_name=>"Taluka"
-   scope :all_users, -> { where('imei_code IS NOT NULL') }
-   scope :approve_users, -> { where('imei_code IS NOT NULL and approve_status = 1') }
-   scope :pending_users, -> { where('imei_code IS NOT NULL and approve_status = 0') }
-   scope :declined_users, -> { where('imei_code IS NOT NULL and approve_status = 2') }
+   scope :all_users, -> { where('gcm_api_key IS NOT NULL') }
+   scope :approve_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 1') }
+   scope :pending_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 0') }
+   scope :declined_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 2') }
 
 
 
@@ -75,11 +83,19 @@ def self.import(file)
   not_saved = []
   (1...data.length).each do |i|
     begin
-      if  (data[i][2].blank? && data[i][3].blank?) || (!data[i][2].blank? && get_user(data[i][2])) || (!data[i][3].blank? && get_user(data[i][3]))
+      if((data[i][2].blank? && data[i][3].blank?) || data[i][14].blank?)
         not_saved<<i+1
         next
       end  
-      u = User.new(:password=>"123456789")
+      u = User.find_by_email(data[i][14])
+      if u 
+      elsif (!data[i][2].blank? && get_user(data[i][2])) 
+        u = get_user(data[i][2])
+      elsif (!data[i][3].blank? && get_user(data[i][3]))
+        u = get_user(data[i][3])
+      else
+        u = User.new(:password=>"123456789")
+      end
       u.name = data[i][0]
       u.designation = data[i][1]
       if data[i][2].blank?
@@ -114,22 +130,53 @@ end
 		Date.strptime(str,"%d/%m/%Y") rescue ""
 	end
 
+  def decode_base64_photo(photo_data, content_type, original_filename )
+      if photo_data && content_type && original_filename
+        decoded_data = Base64.decode64(photo_data)
 
-	def email_required?
-	  false
-	end
+        data = StringIO.new(decoded_data)
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
 
-	def email_changed?
-	  false
-	end
+        data.content_type = content_type
+        data.original_filename = File.basename(original_filename)
 
-	  def login=(login)
-	    @login = login
-	  end
+        self.photo = data
+      end
+  end
 
-	  def login
-	    @login || self.mobile_no1 || self.mobile_no2
-	  end
+  def decode_base64_icard(photo_data, content_type, original_filename )
+      if photo_data && content_type && original_filename
+        decoded_data = Base64.decode64(photo_data)
+
+        data = StringIO.new(decoded_data)
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+
+        data.content_type = content_type
+        data.original_filename = File.basename(original_filename)
+
+        self.icard = data
+      end
+  end
+
+	# def email_required?
+	#   false
+	# end
+
+	# def email_changed?
+	#   false
+	# end
+
+	#   def login=(login)
+	#     @login = login
+	#   end
+
+	#   def login
+	#     @login || self.mobile_no1 || self.mobile_no2
+	#   end
 
 	  def mobile_nos
 	  	if self.mobile_no2.blank?

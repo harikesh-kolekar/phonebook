@@ -18,14 +18,20 @@ private
 
   def data
     users.map do |user|
-      posting_district=user.posting_taluka.district.name rescue ''
+      action = ""
+    if user.approve_status == 2 || user.approve_status == 0
+      action = "<a href='/users/#{user.id}/1'><i class='fa fa-thumbs-up'></i></a> "
+    end
+    if user.approve_status == 1 || user.approve_status == 0
+      action += "<a href='/users/#{user.id}/2'><i class='fa fa-thumbs-down'></i></a> "
+    end
       [
         user.name,
         user.email,
         user.mobile_nos,
         user.designation,
-        posting_district,
-        "",
+        user.posting_district,
+        "<div class='action-glyphicon'>"+action+"<a href='/profiles/#{user.id}'> <i class='fa fa-eye'></i></a> <a  href='/profiles/#{user.id}/edit'><i class='fa fa-pencil'></i></a> <a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/profiles/#{user.id}'><i class='fa fa-trash-o'></i></a><div>",
       ]
     end
   end
