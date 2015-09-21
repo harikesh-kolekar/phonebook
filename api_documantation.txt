@@ -7,11 +7,24 @@ create User::
 URL :: /api/v1/users.json
 Input 
 Method :: Post
+Required :: email, mobile_no1, password, name, gcm_api_key
+
+1 
 Data :: 
 {"user":{"email": "harikeshkolekar@gmail.com","mobile_no1":"9561840902","password":"Harry@123","gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","name":"Harikesh Kolekar"}}
 
+OutPut ::
+ {"success":false,"message":"This User was already registored please contact admin."}
+ OR
+ {"success":false,"message":"Gcm api key has already been taken!"}
+ OR
+ {"success":true,"message":"Please contact admin to approve your account."}
 
-OutPut :: 
+ 2 
+ Data :: 
+{"user":{"email": "harikeshkolekarr@gmail.com","password":"Harry@123","gcm_api_key":"ds31vd12s3v1ds3vsd3vs3dvs","name":"Harikesh Kolekar"}}
+OutPut ::
+{"success":false,"message":"mobile_no1 parameter required."}
 
 ------------------------------------------------------------------------------------------------
 login
@@ -21,8 +34,14 @@ Input
 Method :: Post
 Data :: {"email": "harikeshkolekar@gmail.com","password":"Harry@123"}
 
-output
-{"user":{"id":1,"name":"Harikesh Kolekar","designation":null,"education":null,"phone_no":null,"mobile_no1":"9561840902","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekar@gmail.com","authentication_token":"d2-PMHQ1sywuNz_-ZSx6","medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}}
+OutPut ::
+{"success":false,"message":"Your Account was not approved Please contact admin."}
+OR
+{"success":false,"message":"Incorrect email number or Password."}
+OR
+{"success":false,"message":"Missing parameters"}
+OR
+{"user":{"id":2,"name":"Harikesh Kolekar","designation":null,"education":null,"phone_no":null,"mobile_no1":"956184090285","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vd12s3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekarr@gmail.com","authentication_token":"8sj6xrefg1t5Jswqj8oS","lat":null,"long":null,"medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}}
 
 
 -------------------------------------------------------------------------------------------------
@@ -33,75 +52,165 @@ Input
 Method :: Post
 Data ::{"authentication_token": "d2-PMHQ1sywuNz_-ZSx6"}
 
-OUTPUT 
-
+OUTPUT ::
+{"success":false,"message":"Auth token should not be blank!"}
+OR
+{"success":false,"message":"Auth token is not valid!"}
+OR
 {"user":{"id":1,"name":"Harikesh Kolekar","designation":null,"education":null,"phone_no":null,"mobile_no1":"9561840902","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekar@gmail.com","authentication_token":"d2-PMHQ1sywuNz_-ZSx6","medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}}
 
 
 --------------------------------------------------------------------------------------------------
 ResetPassword
 --------------------------------------------------------------------------------------------------
-URL :: /api/v1/users/profile.json
+URL :: /api/v1/users/resetpassword.json
 Input 
 Method :: Post
 Data ::{"authentication_token": "d2-PMHQ1sywuNz_-ZSx6","password":"Harry@123","new_password":"harry@123"}
 
+OUTPUT ::
+{"success":false,"message":"Auth token should not be blank!"}
+OR
+{"success":false,"message":"Auth token is not valid!"}
+OR
+{"success":false,"message":"All fields are mandatory "}
+OR
+{"success":true,"message":"Password Changed Successfully"}
 
 ----------------------------------------------------------------------------------------------------
 Logout
 -----------------------------------------------------------------------------------------------------
-URL :: /api/v1/users/profile.json
+URL :: /api/v1/users/logout.json
 Input 
 Method :: Post
 Data ::{"authentication_token": "88SEkPhnjzAmNy3yj75z"}
 
-OUTPUT :: {"success":true,"message":"Successfully signout!"}
+OUTPUT :: 
+{"success":true,"message":"Successfully signout!"}
+OR
+{"success":false,"message":"Auth token is not valid!"}
+OR
+{"success":false,"message":"Auth token should not be blank!"}
 
 ---------------------------------------------------------------------------------------------------
-Update
+Update User Profile
 ---------------------------------------------------------------------------------------------------
-URL :: /api/v1/users/profile.json
+URL :: /api/v1/users/userupdate.json
+Required :: email, mobile_no1, name, gcm_api_key
+
 Input 
 Method :: Post
-Data :: {"authentication_token": "xwzovB2pP-bz__AFQ-Am","email":"harikeshkolekar@gmail.com","education":"ME","name":"Harikesh Kolekar","mobile_no1":"9561840902"}
+Data :: {"user":{"name":"Harikesh  B Kolekar","designation":"xyz","education":"ME","phone_no":"0201258448","mobile_no1":"956184090285","mobile_no2":"8087857592","home_taluka":"Shirol","present_post":"Pune","posting_taluka":"Pune","batch":"2012","other_info":"Teaching","imei_code":"fhfhgfhfhfhfhhfh","gcm_api_key":"ds31vd12s3v1ds3vsd3vs3dvs","home_district":"Kolhapur","posting_district":"Pune","email":"harikeshkolekarr@gmail.com","lat":"2.022","long":"4.251","date_of_birth":"10/10/2015","date_of_join_dept":"10/09/2015","posting_date":"10/8/2015"},"authentication_token":"4_hhat_fS6ZxLsd5-JsS"}
 
 OUTPUT ::
     {
-        "user":
-        {
-            "id": 1,
-            "name": "Harikesh Kolekar",
-            "designation": null,
-            "education": "ME",
-            "phone_no": null,
-            "mobile_no1": "9561840902",
-            "mobile_no2": null,
-            "home_taluka": "NA",
-            "present_post": null,
-            "posting_taluka": "NA",
-            "batch": null,
-            "other_info": null,
-            "imei_code": null,
-            "gcm_api_key": "ds31vds3v1ds3vsd3vs3dvs",
-            "home_district": "NA",
-            "posting_district": "NA",
-            "email": "harikeshkolekar@gmail.com",
-            "authentication_token": "xwzovB2pP-bz__AFQ-Am",
-            "medium_photo": "/assets/profile.png",
-            "medium_icard": "/assets/i-card.png",
-            "date_of_birth": " ",
-            "date_of_join_dept": " ",
-            "posting_date": " "
-        }
-    }
+  "user": {
+    "id": 2,
+    "name": "Harikesh  B Kolekar",
+    "designation": "xyz",
+    "education": "ME",
+    "phone_no": "0201258448",
+    "mobile_no1": "956184090285",
+    "mobile_no2": "8087857592",
+    "home_taluka": "Shirol",
+    "present_post": "Pune",
+    "posting_taluka": "Pune",
+    "batch": "2012",
+    "other_info": "Teaching",
+    "imei_code": null,
+    "gcm_api_key": "ds31vd12s3v1ds3vsd3vs3dvs",
+    "home_district": "Kolhapur",
+    "posting_district": "Pune",
+    "email": "harikeshkolekarr@gmail.com",
+    "authentication_token": "4_hhat_fS6ZxLsd5-JsS",
+    "lat": "2.022",
+    "long": "4.251",
+    "medium_photo": "/assets/profile.png",
+    "medium_icard": "/assets/i-card.png",
+    "date_of_birth": "10/10/2015",
+    "date_of_join_dept": "10/09/2015",
+    "posting_date": "10/08/2015"
+  }
+}
+OR
+{"success":false,"message":"mobile_no1 parameter required."}
+
+
+
 
 -----------------------------------------------------------------------------------------------------
 Get ALL Profile
 -----------------------------------------------------------------------------------------------------
-URL :: /api/v1/profiles.json?authentication_token=xwzovB2pP-bz__AFQ-Am
+URL :: /api/v1/profiles.json?authentication_token=4_hhat_fS6ZxLsd5-JsS&page=2
 Input 
 Method :: Get
 
 OUTPUT ::
-[{"user":{"id":1,"name":"Harikesh Kolekar","designation":null,"education":"ME","phone_no":null,"mobile_no1":"9561840902","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekar@gmail.com","medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}}]
+[{"user":{"id":1,"name":"Harikesh Kolekar","designation":null,"education":"ME","phone_no":null,"mobile_no1":"9561840902","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekar@gmail.com","lat":null,"long":null,"medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}},{"user":{"id":2,"name":"Harikesh  B Kolekar","designation":"xyz","education":"ME","phone_no":"0201258448","mobile_no1":"956184090285","mobile_no2":"8087857592","home_taluka":"Shirol","present_post":"Pune","posting_taluka":"Pune","batch":"2012","other_info":"Teaching","imei_code":null,"gcm_api_key":"ds31vd12s3v1ds3vsd3vs3dvs","home_district":"Kolhapur","posting_district":"Pune","email":"harikeshkolekarr@gmail.com","lat":"2.022","long":"4.251","medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":"10/10/2015","date_of_join_dept":"10/09/2015","posting_date":"10/08/2015"}}]
 
+
+
+-----------------------------------------------------------------------------------------------------
+Get UPDATED Profile
+-----------------------------------------------------------------------------------------------------
+URL :: /api/v1/profiles.json?authentication_token=4_hhat_fS6ZxLsd5-JsS&page=2&update_at=30/11/2015 1:1:1:1
+<Date Format>update_at=<d/m/Y H:M:S:L>
+ 
+Method :: Get
+
+OUTPUT ::
+[{"user":{"id":1,"name":"Harikesh Kolekar","designation":null,"education":"ME","phone_no":null,"mobile_no1":"9561840902","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekar@gmail.com","lat":null,"long":null,"medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}},{"user":{"id":2,"name":"Harikesh  B Kolekar","designation":"xyz","education":"ME","phone_no":"0201258448","mobile_no1":"956184090285","mobile_no2":"8087857592","home_taluka":"Shirol","present_post":"Pune","posting_taluka":"Pune","batch":"2012","other_info":"Teaching","imei_code":null,"gcm_api_key":"ds31vd12s3v1ds3vsd3vs3dvs","home_district":"Kolhapur","posting_district":"Pune","email":"harikeshkolekarr@gmail.com","lat":"2.022","long":"4.251","medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":"10/10/2015","date_of_join_dept":"10/09/2015","posting_date":"10/08/2015"}}]
+
+
+
+-----------------------------------------------------------------------------------------------------
+Get all Notifications
+-----------------------------------------------------------------------------------------------------
+URL ::/api/v1/notifications.json?authentication_token=4_hhat_fS6ZxLsd5-JsS&page=2
+Method :: Get
+OUTPUT ::
+[{"notification":{"id":1,"title":"TEST","notification_type":null,"attachment":"/system/notifications/attachments/000/000/001/original/Basic-resignation-letter-template-www.careerfaqs.com.au.doc?1442860450"}}]
+
+-----------------------------------------------------------------------------------------------------
+Get Single Notifications
+-----------------------------------------------------------------------------------------------------
+URL ::/api/v1/notifications/1.json?authentication_token=4_hhat_fS6ZxLsd5-JsS
+Method :: Get
+OUTPUT ::
+{"notification":{"id":1,"title":"TEST","notification_type":null,"attachment":"/system/notifications/attachments/000/000/001/original/Basic-resignation-letter-template-www.careerfaqs.com.au.doc?1442860450"}}
+
+-----------------------------------------------------------------------------------------------------
+Get all Gallery Photo
+-----------------------------------------------------------------------------------------------------
+URL ::/api/v1/gallaries.json?authentication_token=4_hhat_fS6ZxLsd5-JsS&page=2
+Method :: Get
+OUTPUT ::
+[{"gallary":{"id":1,"title":"Home","thumb_photo":"/system/gallaries/photos/000/000/001/thumb/1.jpg?1442861044","medium_photo":"/system/gallaries/photos/000/000/001/medium/1.jpg?1442861044","photo":"/system/gallaries/photos/000/000/001/original/1.jpg?1442861044"}}]
+-----------------------------------------------------------------------------------------------------
+Get Single Gallery Photo
+-----------------------------------------------------------------------------------------------------
+URL ::/api/v1/gallaries/1.json?authentication_token=4_hhat_fS6ZxLsd5-JsS
+Method :: Get
+OUTPUT ::
+{"gallary":{"id":1,"title":"Home","thumb_photo":"/system/gallaries/photos/000/000/001/thumb/1.jpg?1442861044","medium_photo":"/system/gallaries/photos/000/000/001/medium/1.jpg?1442861044","photo":"/system/gallaries/photos/000/000/001/original/1.jpg?1442861044"}}
+
+-----------------------------------------------------------------------------------------------------
+Get all Districts and its Talukas
+-----------------------------------------------------------------------------------------------------
+URL ::/api/v1/districts.json?authentication_token=4_hhat_fS6ZxLsd5-JsS
+Method :: Get
+OUTPUT ::
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+http://localhost:3000/api/v1/profiles.json?authentication_token=4_hhat_fS6ZxLsd5-JsS&page=1&update_at=30/11/2015 1:1:1:1            
+
+<Date Format>update_at=<d/m/Y H:M:S:L>
+
+"authentication_token":"9s6Ey8Bfuy4E2br8WNjB"

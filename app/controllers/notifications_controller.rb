@@ -31,7 +31,7 @@ class NotificationsController < AdminController
   # POST /notifications.json
   def create
     @notification = Notification.new(notification_params)
-
+    @notification.notification_type = "Admin"
     respond_to do |format|
       if @notification.save!
         format.html { redirect_to notifications_url, notice: 'Notification was successfully created.' }

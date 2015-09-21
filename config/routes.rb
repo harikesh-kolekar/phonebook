@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :v1 do
       resources :notifications
       resources :gallaries
-      get "districts/index"
+      get "districts" => 'districts#index' 
       get "profiles" => 'profiles#index' 
       resources :users do
         post :login, :on => :collection

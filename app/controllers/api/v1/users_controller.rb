@@ -7,7 +7,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 			end
 			@user = User.find_by( :email => params['email']) rescue nil
 			if @user.blank?
-				render :json => {:success => false, :message => "Incorrect email number or Password."} and return
+				render :json => {:success => false, :message => "Incorrect email ID or Password."} and return
 			else
 			  if @user.valid_password?(params['password'])
 			  	if @user.approve_status == 1
@@ -16,7 +16,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 					render :json => {:success => false, :message => "Your Account was not approved Please contact admin."} and return			  			
 				end
 			  else
-				render :json => {:success => false, :message => "Incorrect email number or Password."} and return			  	
+				render :json => {:success => false, :message => "Incorrect email ID or Password."} and return			  	
 			  end
 			end
 	 end
