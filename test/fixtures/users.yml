@@ -43,6 +43,8 @@
 #  icard_content_type     :string(255)
 #  icard_file_size        :integer
 #  icard_updated_at       :datetime
+#  lat                    :string(255)
+#  long                   :string(255)
 #
 # Indexes
 #

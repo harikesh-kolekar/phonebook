@@ -5,5 +5,103 @@ url :: https://slambook111.herokuapp.com
 create User::
 -----------------------------------------------------------------------------------------------
 URL :: /api/v1/users.json
-input Post
+Input 
+Method :: Post
+Data :: 
 {"user":{"email": "harikeshkolekar@gmail.com","mobile_no1":"9561840902","password":"Harry@123","gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","name":"Harikesh Kolekar"}}
+
+
+OutPut :: 
+
+------------------------------------------------------------------------------------------------
+login
+------------------------------------------------------------------------------------------------
+URL :: /api/v1/users/login.json
+Input 
+Method :: Post
+Data :: {"email": "harikeshkolekar@gmail.com","password":"Harry@123"}
+
+output
+{"user":{"id":1,"name":"Harikesh Kolekar","designation":null,"education":null,"phone_no":null,"mobile_no1":"9561840902","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekar@gmail.com","authentication_token":"d2-PMHQ1sywuNz_-ZSx6","medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}}
+
+
+-------------------------------------------------------------------------------------------------
+profile
+-------------------------------------------------------------------------------------------------
+URL :: /api/v1/users/profile.json
+Input 
+Method :: Post
+Data ::{"authentication_token": "d2-PMHQ1sywuNz_-ZSx6"}
+
+OUTPUT 
+
+{"user":{"id":1,"name":"Harikesh Kolekar","designation":null,"education":null,"phone_no":null,"mobile_no1":"9561840902","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekar@gmail.com","authentication_token":"d2-PMHQ1sywuNz_-ZSx6","medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}}
+
+
+--------------------------------------------------------------------------------------------------
+ResetPassword
+--------------------------------------------------------------------------------------------------
+URL :: /api/v1/users/profile.json
+Input 
+Method :: Post
+Data ::{"authentication_token": "d2-PMHQ1sywuNz_-ZSx6","password":"Harry@123","new_password":"harry@123"}
+
+
+----------------------------------------------------------------------------------------------------
+Logout
+-----------------------------------------------------------------------------------------------------
+URL :: /api/v1/users/profile.json
+Input 
+Method :: Post
+Data ::{"authentication_token": "88SEkPhnjzAmNy3yj75z"}
+
+OUTPUT :: {"success":true,"message":"Successfully signout!"}
+
+---------------------------------------------------------------------------------------------------
+Update
+---------------------------------------------------------------------------------------------------
+URL :: /api/v1/users/profile.json
+Input 
+Method :: Post
+Data :: {"authentication_token": "xwzovB2pP-bz__AFQ-Am","email":"harikeshkolekar@gmail.com","education":"ME","name":"Harikesh Kolekar","mobile_no1":"9561840902"}
+
+OUTPUT ::
+    {
+        "user":
+        {
+            "id": 1,
+            "name": "Harikesh Kolekar",
+            "designation": null,
+            "education": "ME",
+            "phone_no": null,
+            "mobile_no1": "9561840902",
+            "mobile_no2": null,
+            "home_taluka": "NA",
+            "present_post": null,
+            "posting_taluka": "NA",
+            "batch": null,
+            "other_info": null,
+            "imei_code": null,
+            "gcm_api_key": "ds31vds3v1ds3vsd3vs3dvs",
+            "home_district": "NA",
+            "posting_district": "NA",
+            "email": "harikeshkolekar@gmail.com",
+            "authentication_token": "xwzovB2pP-bz__AFQ-Am",
+            "medium_photo": "/assets/profile.png",
+            "medium_icard": "/assets/i-card.png",
+            "date_of_birth": " ",
+            "date_of_join_dept": " ",
+            "posting_date": " "
+        }
+    }
+
+-----------------------------------------------------------------------------------------------------
+Get ALL Profile
+-----------------------------------------------------------------------------------------------------
+URL :: /api/v1/profiles.json?authentication_token=xwzovB2pP-bz__AFQ-Am
+Input 
+Method :: Get
+
+OUTPUT ::
+[{"user":{"id":1,"name":"Harikesh Kolekar","designation":null,"education":"ME","phone_no":null,"mobile_no1":"9561840902","mobile_no2":null,"home_taluka":"NA","present_post":null,"posting_taluka":"NA","batch":null,"other_info":null,"imei_code":null,"gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","home_district":"NA","posting_district":"NA","email":"harikeshkolekar@gmail.com","medium_photo":"/assets/profile.png","medium_icard":"/assets/i-card.png","date_of_birth":" ","date_of_join_dept":" ","posting_date":" "}}]
+

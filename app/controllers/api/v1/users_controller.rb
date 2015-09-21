@@ -103,9 +103,9 @@ class Api::V1::UsersController <  Api::V1::ApiController
 			@user.password = params[:new_password]
 			@user.reset_authentication_token! 
 			if @user.save
-				render :action => 'profile' and return
+				render :json => { :success => true, :message => "Password Changed Successfully"} and return
 			else
-				render :json => { :success => false, :message => "#{@user.errors.full_messages.join(', ')}!"}
+				render :json => { :success => false, :message => "#{@user.errors.full_messages.join(', ')}!"} and return
 			end
 		else 
 			render :json => { :success => false, :message => "Incorrect current password specified"} and return
@@ -120,7 +120,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 
 	protected
 		def new_user_params
-	      user = params.require(:user).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :gcm_api_key, :home_district, :posting_district, :password, :email)
+	      user = params.require(:user).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :gcm_api_key, :home_district, :posting_district, :password, :email, :lat, :long)
 	      user["date_of_birth"] = string_to_date(params[:user][:date_of_birth]) 
 		  user["date_of_join_dept"] = string_to_date(params[:user][:date_of_join_dept]) 
 		  user["posting_date"] = string_to_date(params[:user][:posting_date]) 
