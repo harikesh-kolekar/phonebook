@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
 
 
 def self.import(file)
+  binding.pry
 	workbook = RubyXL::Parser.parse(file)
 	worksheet = workbook[0]
 	data = worksheet.extract_data
