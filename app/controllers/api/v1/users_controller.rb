@@ -2,12 +2,12 @@ class Api::V1::UsersController <  Api::V1::ApiController
 	before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
 
 	def login
-			if params['email'].blank? || params['password'].blank? 
+			if params['mobile_no'].blank? || params['password'].blank? 
 				render :json => {:success => false, :message => "Missing parameters"} and return
 			end
-			@user = User.find_by( :email => params['email']) rescue nil
+			@user = User.where("mobile_no1 = ? OR mobile_no2 = ? ", params['mobile_no'], params['mobile_no']).first rescue nil 
 			if @user.blank?
-				render :json => {:success => false, :message => "Incorrect email ID or Password."} and return
+				render :json => {:success => false, :message => "Incorrect Mobile number or Password."} and return
 			else
 			  if @user.valid_password?(params['password'])
 			  	if @user.approve_status == 1
@@ -16,7 +16,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 					render :json => {:success => false, :message => "Your Account was not approved Please contact admin."} and return			  			
 				end
 			  else
-				render :json => {:success => false, :message => "Incorrect email ID or Password."} and return			  	
+				render :json => {:success => false, :message => "Incorrect Mobile number or Password."} and return			  	
 			  end
 			end
 	 end
@@ -39,7 +39,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
   end
 
 	def create
-		begin
+		# begin
 			check_params = validate_params()
 			unless check_params[:success]
 				render :json=>check_params and return  
@@ -53,6 +53,9 @@ class Api::V1::UsersController <  Api::V1::ApiController
 		    end
 			if @user.blank?
 				@user = User.new(new_user_params)
+				@user.decode_base64_photo(params['user']['photo_data'], params['user']['photo_content_type'], params['user']['photo_original_filename']) unless(params['user']['photo_data'].blank? || params['user']['photo_content_type'].blank? || params['user']['photo_original_filename'].blank?)
+		  		@user.decode_base64_icard(params['user']['icard_data'], params['user']['icard_content_type'], params['user']['icard_original_filename']) unless(params['user']['icard_data'].blank? || params['user']['icard_content_type'].blank? || params['user']['icard_original_filename'].blank?)
+		  
 				if @user.save
 					render :json => {:success => true, :message => "Please contact admin to approve your account."} and return
 				else
@@ -63,9 +66,9 @@ class Api::V1::UsersController <  Api::V1::ApiController
 			elsif @user && @user.update!(new_user_params)
 				render :json => {:success => true, :message => "Please contact admin to approve your account."} and return
 			end
-		rescue Exception => e
-			render :json => {:success => false, :message => "#{e.message}"} and return
-		end
+		# rescue Exception => e
+		# 	render :json => {:success => false, :message => "#{e.message}"} and return
+		# end
   	end
 
   
@@ -124,8 +127,6 @@ class Api::V1::UsersController <  Api::V1::ApiController
 	      user["date_of_birth"] = string_to_date(params[:user][:date_of_birth]) 
 		  user["date_of_join_dept"] = string_to_date(params[:user][:date_of_join_dept]) 
 		  user["posting_date"] = string_to_date(params[:user][:posting_date]) 
-		  user.decode_base64_photo(params['user']['photo_data'], params['user']['photo_content_type'], params['user']['photo_original_filename']) unless(params['user']['photo_data'].blank? || params['user']['photo_content_type'].blank? || params['user']['photo_original_filename'].blank?)
-		  user.decode_base64_icard(params['user']['icard_data'], params['user']['icard_content_type'], params['user']['icard_original_filename']) unless(params['user']['icard_data'].blank? || params['user']['icard_content_type'].blank? || params['user']['icard_original_filename'].blank?)
 		  return user
 	    end
 

@@ -85,11 +85,11 @@ def self.import(file)
   not_saved = []
   (1...data.length).each do |i|
     begin
-      if((data[i][2].blank? && data[i][3].blank?) || data[i][14].blank?)
+      if((data[i][2].blank? && data[i][3].blank?) || data[i][4].blank?)
         not_saved<<i+1
         next
       end  
-      u = User.find_by_email(data[i][14])
+      u = User.find_by_email(data[i][4])
       if u 
       elsif (!data[i][2].blank? && get_user(data[i][2])) 
         u = get_user(data[i][2])
@@ -106,19 +106,11 @@ def self.import(file)
       	u.mobile_no1 = data[i][2]
       	u.mobile_no2 = data[i][3]
       end
-      u.phone_no = data[i][4]
-      u.present_post = data[i][5]
-      u.posting_district = data[i][6]
-      u.posting_taluka = data[i][7]
-      u.home_district = data[i][8]
-      u.home_taluka = data[i][9]
-      u.batch = data[i][10]
-      u.date_of_join_dept = self.convert_string_to_date data[i][11]
-      u.posting_date = self.convert_string_to_date data[i][12]
-      u.date_of_birth = self.convert_string_to_date data[i][13]
-      u.email = data[i][14]
-      u.education = data[i][15]
-      u.other_info = data[i][16]
+      u.email = data[i][4]
+      u.posting_district = data[i][5]
+      u.home_district = data[i][6]
+      u.date_of_birth = self.convert_string_to_date data[i][7]
+      u.other_info = data[i][8]
 
       u.save!
     rescue Exception => e
@@ -164,9 +156,9 @@ end
       end
   end
 
-	# def email_required?
-	#   false
-	# end
+	def email_required?
+	  false
+	end
 
 	# def email_changed?
 	#   false
@@ -191,5 +183,7 @@ end
     def self.get_user(mobile)
       User.where("mobile_no1=? or mobile_no2=? ",mobile, mobile).first
     end
-
+    def remove_gcm_key()
+      $gcm
+    end
 end

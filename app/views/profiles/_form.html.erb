@@ -66,7 +66,7 @@
         </div>
     </div>
     
-    <div class="form-group col-md-6">
+    <!-- <div class="form-group col-md-6">
         <%= f.label :phone_no, "Phone No:",:class => "col-sm-3 control-label" %>
       <div class="col-sm-8">
         <%= f.text_field :phone_no,:class => "form-control", :placeholder => "Enter Phone Number"  %>
@@ -80,7 +80,7 @@
       <div class="col-sm-8">
           <%= f.text_field :education,:class => "form-control", :placeholder => "Enter Education"  %>
       </div>
-    </div>
+    </div> -->
     
     <div class="form-group col-md-6">
           <%= f.label :designation, "Designation:",:class => "col-sm-3 control-label"  %>
@@ -96,11 +96,11 @@
     <div class="form-group col-md-6">
          <%= f.label :home_district, "Home District:",:class => "col-sm-3 control-label"  %>
        <div class="col-sm-8 dropdown">
-         <%= f.select :home_district, options_from_collection_for_select(District.all,"name","name",@home_district.name), {},{:onchange=>"get_taluka($(this).val(),'user_home_taluka')",:class => "form-control"} %>
+         <%= f.select :home_district, options_from_collection_for_select(District.all,"name","name",@home_district.name), {},{:class => "form-control"} %>
        </div>
     </div>
     
-    <div class="form-group col-md-6">
+   <!--  <div class="form-group col-md-6">
           <%= f.label :home_taluka, "Home Taluka:",:class => "col-sm-3 control-label"  %>
        <div class="col-sm-8">
           <%= f.select :home_taluka, options_from_collection_for_select(@home_talukas,"name","name",@home_taluka),{}, {:class => "form-control"}  %>
@@ -108,24 +108,24 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row"> -->
     <div class="form-group col-md-6">
            <%= f.label :posting_district, "Posting District:",:class => "col-sm-3 control-label"  %>
         <div class="col-sm-8">
-           <%= f.select :posting_district, options_from_collection_for_select(District.all,"name","name",@posting_district.name), {},{:onchange=>"get_taluka($(this).val(),'user_posting_taluka')", :class => "form-control"} %>
+           <%= f.select :posting_district, options_from_collection_for_select(District.all,"name","name",@posting_district.name), {},{ :class => "form-control"} %>
         </div>
      </div>
 
-    <div class="form-group col-md-6">
+    <!-- <div class="form-group col-md-6">
     
          <%= f.label :posting_taluka, "Posting Taluka:",:class => "col-sm-3 control-label"  %>
      <div class="col-sm-8">
          <%= f.select :posting_taluka, options_from_collection_for_select(@posting_talukas,"name","name",@posting_taluka),{}, {:class => "form-control"} %>
       </div>
-    </div>
+    </div> -->
   </div>  
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="form-group col-md-6">
           <%= f.label :present_post, "Present Post:",:class => "col-sm-3 control-label"  %>
       <div class="col-sm-8">	
@@ -140,8 +140,8 @@
       </div>
     </div>
   </div>
-
-  <div class="row">
+ -->
+ <!--  <div class="row">
     <div class="form-group col-md-6">
           <%= f.label :date_of_join_dept, "Joining date:",:class => "col-sm-3 control-label"  %>
       <div class="col-sm-8">
@@ -155,7 +155,7 @@
           <%= f.text_field :batch,:class => "form-control", :placeholder => "Enter Batch"  %>
       </div>	
     </div>
-  </div>
+  </div> -->
 
   <div class="row">
     <div class="form-group col-md-6">
@@ -168,7 +168,7 @@
   
   <div class="form-group col-md-12">
   
-  <%= f.submit "Cancle",:class => "col-md-offset-4 col-md-1 btn btn-primary"%>
+  <%= link_to  "Cancle","/", :class => "col-md-offset-4 col-md-1 btn btn-primary"%>
   <%= f.submit "save",  :class => "col-md-1 btn btn-primary", :style =>"margin-left : 5%;" %>
  </div>
 <% end %>
@@ -192,16 +192,16 @@ $(function() {
 
 
 
-  function get_taluka(dist_name, taluka_select_id)
-  {
-    $.ajax({
+  // function get_taluka(dist_name, taluka_select_id)
+  // {
+  //   $.ajax({
         
-        url: "<%= get_talukas_profiles_path %>",
-        type: "GET",
-        data :"name=" + dist_name + "&id=" +  taluka_select_id, 
-        success :function(data){
+  //       url: "<%= get_talukas_profiles_path %>",
+  //       type: "GET",
+  //       data :"name=" + dist_name + "&id=" +  taluka_select_id, 
+  //       success :function(data){
 
-        }
-    });
-  }
+  //       }
+  //   });
+  // }
 </script>

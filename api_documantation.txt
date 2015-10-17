@@ -1,6 +1,6 @@
 
 content-Type:Application/json 
-url :: https://slambook111.herokuapp.com
+url :: http://phonebook-kolekar.rhcloud.com/
 -----------------------------------------------------------------------------------------------
 create User::
 -----------------------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ Required :: email, mobile_no1, password, name, gcm_api_key
 
 1 
 Data :: 
-{"user":{"email": "harikeshkolekar@gmail.com","mobile_no1":"9561840902","password":"Harry@123","gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","name":"Harikesh Kolekar"}}
+{"user":{"email": "harikeshkolekar@gmail.com","mobile_no1":"9561840902","password":"Harry@123","gcm_api_key":"ds31vds3v1ds3vsd3vs3dvs","name":"Harikesh Kolekar", "photo_data":"sfcsdfdsfsdnfjkndsjkfnjdfdjfkd", "photo_content_type":"image/jpeg", "photo_original_filename": "photo.jpeg", "icard_data":"sfcsdfdsfsdnfjkndsjkfnjdfdjfkd", "icard_content_type":"image/jpeg", "icard_original_filename": "icard.jpeg"}}
 
 OutPut ::
  {"success":false,"message":"This User was already registored please contact admin."}
@@ -100,7 +100,7 @@ Required :: email, mobile_no1, name, gcm_api_key
 
 Input 
 Method :: Post
-Data :: {"user":{"name":"Harikesh  B Kolekar","designation":"xyz","education":"ME","phone_no":"0201258448","mobile_no1":"956184090285","mobile_no2":"8087857592","home_taluka":"Shirol","present_post":"Pune","posting_taluka":"Pune","batch":"2012","other_info":"Teaching","imei_code":"fhfhgfhfhfhfhhfh","gcm_api_key":"ds31vd12s3v1ds3vsd3vs3dvs","home_district":"Kolhapur","posting_district":"Pune","email":"harikeshkolekarr@gmail.com","lat":"2.022","long":"4.251","date_of_birth":"10/10/2015","date_of_join_dept":"10/09/2015","posting_date":"10/8/2015"},"authentication_token":"4_hhat_fS6ZxLsd5-JsS"}
+Data :: {"user":{"name":"Harikesh  B Kolekar","designation":"xyz","education":"ME","phone_no":"0201258448","mobile_no1":"956184090285","mobile_no2":"8087857592","home_taluka":"Shirol","present_post":"Pune","posting_taluka":"Pune","batch":"2012","other_info":"Teaching","imei_code":"fhfhgfhfhfhfhhfh","gcm_api_key":"ds31vd12s3v1ds3vsd3vs3dvs","home_district":"Kolhapur","posting_district":"Pune","email":"harikeshkolekarr@gmail.com","lat":"2.022","long":"4.251","date_of_birth":"10/10/2015","date_of_join_dept":"10/09/2015","posting_date":"10/8/2015"  , "photo_data":"sfcsdfdsfsdnfjkndsjkfnjdfdjfkd", "photo_content_type":"image/jpeg", "photo_original_filename": "photo.jpeg", "icard_data":"sfcsdfdsfsdnfjkndsjkfnjdfdjfkd", "icard_content_type":"image/jpeg", "icard_original_filename": "icard.jpeg"},"authentication_token":"4_hhat_fS6ZxLsd5-JsS"}
 
 OUTPUT ::
     {
