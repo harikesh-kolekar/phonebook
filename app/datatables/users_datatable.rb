@@ -24,6 +24,7 @@ private
     end
     if user.approve_status == 1 || user.approve_status == 0
       action += "<a href='/users/#{user.id}/2'><i class='fa fa-thumbs-down'></i></a> "
+      action += "<a href='/change_password?user_id=#{user.id}' data-remote='true'> <i class='fa fa-key'></i> </a>" if user.approve_status == 1
     end
       [
         user.name,

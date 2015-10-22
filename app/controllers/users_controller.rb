@@ -6,6 +6,24 @@ class UsersController < ApplicationController
 	 end
   end
 
+  def reset_password
+  	@success = true 
+  	begin
+  		if params[:new_password] == params[:confirm_password]
+		  	user = User.find_by_id(params[:user_id])
+		  	user.password = params[:new_password]
+		  	user.save!
+		else
+	  		@message = "New Password and Confirm Password must be same"
+	  		@success = false
+	  	end
+  	rescue Exception => e
+  		@success = false 
+	 	@message = e.message
+	 end
+  end
+
+
   def updat_status
   	begin
 	  	user = User.find_by_id(params[:user_id])
@@ -16,9 +34,6 @@ class UsersController < ApplicationController
 	  		options = {data: {id: user.id, message: "User is Approved"}, collapse_key: "user_approved"}
 	  		response = $gcm.send(registration_ids, options)
 	  		logger.info "+++++++++++++++++++++++++++++++++GSM send++++++++++++++++++++++++ "
-	  		logger.info response
-	  		response = $gcm.add($key_name, "788763458333", $notification_key, [user.gcm_api_key])
-	  		logger.info "+++++++++++++++++++++++++++++++++GSM ADD++++++++++++++++++++++++ "
 	  		logger.info response
 	  	end
 	  	redirect_to :back, notice: 'Status Updated'

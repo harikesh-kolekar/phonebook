@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
    scope :pending_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 0') }
    scope :declined_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 2') }
 
-
+   after_save :add_gcm_redistration_id_to_notification_key
 
 def self.import(file)
 	workbook = RubyXL::Parser.parse(file)
@@ -188,5 +188,13 @@ end
     end
     def remove_gcm_key()
       $gcm
+    end
+
+    def add_gcm_redistration_id_to_notification_key
+      if self.approve_status == 1 && (self.approve_status_changed? || self.gcm_api_key_changed?)
+        response = $gcm.add($key_name, "788763458333", $notification_key, [self.gcm_api_key])
+        logger.info "+++++++++++++++++++++++++++++++++GSM ADD++++++++++++++++++++++++ "
+        logger.info response
+      end   
     end
 end
