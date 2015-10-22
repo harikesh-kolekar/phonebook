@@ -34,6 +34,14 @@ class NotificationsController < AdminController
     @notification.notification_type = "Admin"
     respond_to do |format|
       if @notification.save!
+        response = $gcm.send_with_notification_key($notification_key, {
+            data: {id: @notification.id, title: @notification.title},
+            collapse_key: "admin_notification"})
+        p "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
+        p response
+        logger.info "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
+        logger.info response
+
         format.html { redirect_to notifications_url, notice: 'Notification was successfully created.' }
         format.json { render :show, status: :created, location: @notification }
       else

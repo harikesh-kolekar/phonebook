@@ -80,4 +80,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-end
+  $gcm = GCM.new("AIzaSyBpYRrZq1e9H3hkHe9AQ3OynCHSKK-oW7c")
+  $key_name = "notification_production"
+  $notification_key='APA91bFu0joCGDs3U2z-3IHYGa_UosdnAro6nPfMrokcIcYGw8_1PxYx7P-scTxd3Cvld7ISQUCulrqkVQMsHUeqZljStrOjL2jtOnF0XUgw5Bi0xSpB_J1WFVQF1_yjIvvQTE3at-1L'
+  end

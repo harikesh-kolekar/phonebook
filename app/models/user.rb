@@ -85,6 +85,9 @@ def self.import(file)
   not_saved = []
   (1...data.length).each do |i|
     begin
+      if(data[i][2].blank? && data[i][3].blank? && data[i][4].blank? && data[i][1].blank? && data[i][5].blank? && data[i][6].blank? && data[i][7].blank? && data[i][8].blank? )
+        next
+      end
       if((data[i][2].blank? && data[i][3].blank?) || data[i][4].blank?)
         not_saved<<i+1
         next
