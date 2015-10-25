@@ -11,6 +11,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 			else
 			  if @user.valid_password?(params['password'])
 			  	if @user.approve_status == 1
+			  		@user.reset_authentication_token!
 					render :action => 'profile' and return
 				else
 					render :json => {:success => false, :message => "Your Account was not approved Please contact admin."} and return			  			
