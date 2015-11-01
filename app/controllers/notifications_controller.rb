@@ -34,13 +34,17 @@ class NotificationsController < AdminController
     @notification.notification_type = "Admin"
     respond_to do |format|
       if @notification.save!
-        response = $gcm.send_with_notification_key($notification_key, {
-            data: {id: @notification.id, title: @notification.title},
-            collapse_key: "admin_notification"})
-        p "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
-        p response
-        logger.info "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
-        logger.info response
+        params[:notification][:designation_ids].each do |designation_id|
+          if(designation_id.present?)
+            response = $gcm.send_with_notification_key(eval("$notification_key_"+designation_id), {
+                data: {id: @notification.id, title: @notification.title},
+                collapse_key: "admin_notification"})
+            p "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
+            p response
+            logger.info "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
+            logger.info response
+          end
+        end
 
         format.html { redirect_to notifications_url, notice: 'Notification was successfully created.' }
         format.json { render :show, status: :created, location: @notification }
@@ -83,6 +87,6 @@ class NotificationsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
-      params.require(:notification).permit(:title, :description, :notification_type, :attachment)
+      params.require(:notification).permit(:title, :description, :notification_type, :attachment, :designation_ids=>[])
     end
 end

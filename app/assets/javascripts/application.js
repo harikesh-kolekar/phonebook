@@ -17,7 +17,7 @@
 //= require jquery.dataTables
 //= require moment.min.js
 //= require daterangepicker.js
-
+//= require bootstrap-multiselect
  
 $(document).ready(function() {
       $('#table').DataTable({

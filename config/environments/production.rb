@@ -80,7 +80,40 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #Email
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => "gmail.com",
+  :user_name            => 'phonebook.department@gmail.com',
+  :password             => 'departmentphonebook',
+  :authentication       => 'login',
+  :enable_starttls_auto => true  }
+  
+  
+  config.action_mailer.asset_host = "localhost:3000"
+
+  config.default_content_type = "text/html"
+
+
+  #GSM Key
   $gcm = GCM.new("AIzaSyBpYRrZq1e9H3hkHe9AQ3OynCHSKK-oW7c")
   $key_name = "notification_production"
   $notification_key='APA91bFu0joCGDs3U2z-3IHYGa_UosdnAro6nPfMrokcIcYGw8_1PxYx7P-scTxd3Cvld7ISQUCulrqkVQMsHUeqZljStrOjL2jtOnF0XUgw5Bi0xSpB_J1WFVQF1_yjIvvQTE3at-1L'
+  
+  $notification_key_1='APA91bGSbbnXYUNUdjT5DWGEvnq0kqcRMiH7LOTgQ6LOfnXpOdaothMkJUHF4iuA4HLt6ky4k0nOsa-obQBJCdxDDps9Ggw4t3R3niEEJl7PNwopn89s1iSDJVI7f8B4f8P7Ly8r17tR'
+  $key_name_1 = "notification_production_1"
+  $notification_key_2='APA91bHuyFnpJVelWhO2O_s2fv8QqyqEP0lFisUjuMNyko12Ocny1r9pZB-80lkXmTvvFWIta9MeAJaAQEzugQyG6aXN05xdk3KVtPoemwKtH0Hg5dZ7AcqkIPV7h3qF23xT39euAFpC'
+  $key_name_2 = "notification_production_2"
+  $notification_key_3='APA91bHleSL3e2z64MlWArCIhCLdtuqi2Lgma9czFr478cKP1ny-HV4bBFo7fo2GqbSPpyyFAMtW8rR4ykTHyf57swmjcuhAuHzzV86pHiAleuDLXM4CcM-SBI2PbX_hadVb4LpzeR4B'
+  $key_name_3 = "notification_production_3"
+  $notification_key_4='APA91bGJqRqI0K5IHyKNS_gMmb8icoPzgSMceo0kx7Z7qxHp4maUyCZoLjdn7YjJfA51Cm5Iqpym758BOYx8MuCDCdjWRJeYI5r2gBvewEndEy80obzKdp_CjOdDuzDiA6hqqHzwrzxh'
+  $key_name_4 = "notification_production_4"
+  $notification_key_5='APA91bHQjQdF8NRHpxbAgCt0ICa_nPworhi4dansBZ6gY3ufosKBm-AZT2EQMadXrhv21suIsK97hM5MLAEPd7SNZQ963r20FFnQDfglpi6U5qOEHJrcZ276kB00mlNj2qOLCb211CAR'
+  $key_name_5 = "notification_production_5"
+
   end

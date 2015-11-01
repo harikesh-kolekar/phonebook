@@ -15,7 +15,6 @@ class NotificationsDatatable
   end
 
 private
-
   def data
     notifications.map do |notification|
       filename=notification.attachment.original_filename
@@ -23,6 +22,7 @@ private
         notification.title,
         notification.description,
         notification.notification_type,
+        notification.designations.collect(&:name).join(', '),
         "<a href = '#{notification.attachment.url rescue ''}'>#{filename}</a>",
         '<div class="action-glyphicon"><a data-remote="true" href="/notifications/'+notification.id.to_s+'/edit.js"><i class="fa fa-pencil"></i></a> <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/notifications/'+notification.id.to_s+'"><i class="fa fa-trash-o"></i></a></div>',
       ]

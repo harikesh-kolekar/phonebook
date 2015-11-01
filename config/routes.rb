@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-
+  devise_for :users
   get 'users/:type' => 'users#index', :as => "users"
   post 'users/:user_id/reset_password' => 'users#reset_password', :as => "reset_password_user"
   get 'users/:user_id/:status' => 'users#updat_status', :as => "updat_status_user"
   
 
-  devise_for :users
+  
   namespace :api do
   namespace :v1 do
       resources :notifications
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         post :resetpassword, :on => :collection 
         post :forgotpassword, :on => :collection
         post :profile, :on => :collection
+        post :forgotpassword, :on => :collection
       end
     end
   end

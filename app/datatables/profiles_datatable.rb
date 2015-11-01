@@ -8,7 +8,7 @@ class ProfilesDatatable
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: User.count,
+      iTotalRecords: User.profile.count,
       iTotalDisplayRecords: users.total_entries,
       aaData: data
     }
@@ -33,7 +33,7 @@ private
   end
 
   def fetch_users
-    users = User.order("#{sort_column} #{sort_direction}")
+    users = User.profile.order("#{sort_column} #{sort_direction}")
     users = users.page(page).per_page(per_page)
     if params[:search][:value].present?
       users = users.where("name like :search or email like :search or mobile_no1 like :search or mobile_no2 like :search", search: "%#{params[:search][:value]}%")

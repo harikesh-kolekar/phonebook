@@ -1,6 +1,7 @@
 $("#modal_html" )[0].innerHTML="<%= escape_javascript(render 'form') %>";
 $('#editnotification').modal('show');
-
+$('#example-multiple-selected').multiselect();
+$('#notification_designation_ids').multiselect();
 function ValidateFileUpload() {
 	var fuData = document.getElementById('notification_attachment');
 	var FileUploadPath = fuData.value;

@@ -75,8 +75,10 @@ class User < ActiveRecord::Base
    scope :approve_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 1') }
    scope :pending_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 0') }
    scope :declined_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 2') }
+   scope :profile, -> { where('gcm_api_key IS NULL or (gcm_api_key IS NOT NULL and approve_status = 1) ') }
 
    after_save :add_gcm_redistration_id_to_notification_key
+
 
 def self.import(file)
 	workbook = RubyXL::Parser.parse(file)
@@ -192,7 +194,8 @@ end
 
     def add_gcm_redistration_id_to_notification_key
       if self.approve_status == 1 && (self.approve_status_changed? || self.gcm_api_key_changed?)
-        response = $gcm.add($key_name, "788763458333", $notification_key, [self.gcm_api_key])
+        designation_id = Designation.find_by(:name=>self.designation)
+        response = $gcm.add(eval("$key_name_" + designation_id.to_s), "788763458333", eval("$notification_key_" + designation_id.to_s), [self.gcm_api_key])
         logger.info "+++++++++++++++++++++++++++++++++GSM ADD++++++++++++++++++++++++ "
         logger.info response
       end   
