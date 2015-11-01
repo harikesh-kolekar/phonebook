@@ -82,7 +82,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #Email
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'phonebook-kolekar.rhcloud.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
@@ -95,7 +95,7 @@ Rails.application.configure do
   :enable_starttls_auto => true  }
   
   
-  config.action_mailer.asset_host = "localhost:3000"
+  config.action_mailer.asset_host = "phonebook-kolekar.rhcloud.com/"
 
   config.default_content_type = "text/html"
 
