@@ -194,7 +194,7 @@ end
 
     def add_gcm_redistration_id_to_notification_key
       if self.approve_status == 1 && (self.approve_status_changed? || self.gcm_api_key_changed?)
-        designation_id = Designation.find_by(:name=>self.designation)
+        designation_id = Designation.find_by(:name=>self.designation).id
         response = $gcm.add(eval("$key_name_" + designation_id.to_s), "788763458333", eval("$notification_key_" + designation_id.to_s), [self.gcm_api_key])
         logger.info "+++++++++++++++++++++++++++++++++GSM ADD+++++++++++#{eval("$key_name_" + designation_id.to_s)}+++++++++++++ $key_name_" + designation_id.to_s
         logger.info response
