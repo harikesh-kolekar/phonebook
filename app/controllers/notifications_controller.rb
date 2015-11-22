@@ -39,7 +39,7 @@ class NotificationsController < AdminController
       if @notification.save!
         params[:notification][:designation_ids].each do |designation_id|
           if(designation_id.present?)
-            response = $gcm.send_with_notification_key(eval("$notification_key_"+designation_id), {
+            response = $gcm.send_with_notification_key(eval("$notification_key_"+designation_id.to_s), {
                 data: {id: @notification.id, title: @notification.title},
                 collapse_key: "admin_notification"})
             p "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
