@@ -1,5 +1,5 @@
 class Api::V1::ApiController < ActionController::Base
-	before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
+	#before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
 	before_filter :debug
 	# rescue_from ::Exception, with: :error_occurred
 

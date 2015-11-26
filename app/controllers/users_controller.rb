@@ -35,7 +35,7 @@ class UsersController < AdminController
 	  		response = $gcm.send(registration_ids, options)
 	  		logger.info "+++++++++++++++++++++++++++++++++GSM send++++++++++++++++++++++++ "
 	  		logger.info response
-	  	elsif user.approve_status == 3 && user.gcm_api_key.present?
+	  	elsif user.approve_status == 2 && user.gcm_api_key.present?
 	  		registration_ids = [user.gcm_api_key]
 	  		options = {data: {id: user.id, message: "User is Declined"}, collapse_key: "user_declined"}
 	  		response = $gcm.send(registration_ids, options)
