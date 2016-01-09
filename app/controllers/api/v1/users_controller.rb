@@ -124,7 +124,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 
 	protected
 		def new_user_params
-	      user = params.require(:user).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :gcm_api_key, :home_district, :posting_district, :password, :email, :lat, :long)
+	      user = params.require(:user).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :gcm_api_key, :home_district, :posting_district, :password, :email, :lat, :long, :imei_code)
 	      user["date_of_birth"] = string_to_date(params[:user][:date_of_birth]) 
 		  user["date_of_join_dept"] = string_to_date(params[:user][:date_of_join_dept]) 
 		  user["posting_date"] = string_to_date(params[:user][:posting_date]) 

@@ -1,5 +1,6 @@
 class Api::V1::ApiController < ActionController::Base
-	before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
+	# before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
+	before_filter :valid_imei_code, :except  => [:login, :create, :forgotpassword]
 	before_filter :debug
 	# rescue_from ::Exception, with: :error_occurred
 
@@ -10,6 +11,17 @@ class Api::V1::ApiController < ActionController::Base
 
 		def debug
 			print " ==== params = #{params.to_json} ===== "
+		end
+
+		def valid_imei_code
+			if params['imei_code'].blank?
+				render :json => {:success => false, :message => "Imei Code should not be blank!" } and return
+			else
+				@user = User.find_by(:imei_code=>params['imei_code']) rescue nil
+				if @user.nil?
+					render :json => {:success => false, :message => "Imei Code is not valid!" } and return
+				end
+			end
 		end
 
 		def valid_token
