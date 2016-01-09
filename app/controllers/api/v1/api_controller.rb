@@ -20,6 +20,8 @@ class Api::V1::ApiController < ActionController::Base
 				@user = User.find_by(:imei_code=>params['imei_code']) rescue nil
 				if @user.nil?
 					render :json => {:success => false, :message => "Imei Code is not valid!" } and return
+				elsif @user.approve_status != 1
+					render :json => {:success => false, :message => "Your Account was not approved Please contact admin."} and return			  			
 				end
 			end
 		end
