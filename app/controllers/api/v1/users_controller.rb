@@ -136,8 +136,11 @@ class Api::V1::UsersController <  Api::V1::ApiController
 	    	if params[:user]['mobile_no1'].blank? 
 	    		req_params << 'mobile_no1'
 	    	end
-	    	if params[:user]['password'].blank? 
-	    		req_params << 'password'
+	    	# if params[:user]['password'].blank? 
+	    	# 	req_params << 'password'
+	    	# end
+	    	if params[:user]['imei_code'].blank? 
+	    		req_params << 'imei_code'
 	    	end
 	    	if params[:user]['email'].blank? 
 	    		req_params << 'email'
