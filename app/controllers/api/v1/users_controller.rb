@@ -138,7 +138,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 	    	end
 	    	# if params[:user]['password'].blank? 
 	    	# 	req_params << 'password'
-	    	# end
+	    	# end 
 	    	if params[:user]['imei_code'].blank? 
 	    		req_params << 'imei_code'
 	    	end
