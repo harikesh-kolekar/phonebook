@@ -1,6 +1,6 @@
 class Api::V1::ApiController < ActionController::Base
 	# before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
-	before_filter :valid_imei_code, :except  => [:login, :create, :forgotpassword]
+	before_filter :valid_imei_code, :except  => [:create, :forgotpassword]
 	before_filter :debug
 	# rescue_from ::Exception, with: :error_occurred
 
@@ -19,9 +19,9 @@ class Api::V1::ApiController < ActionController::Base
 			else
 				@user = User.find_by(:imei_code=>params['imei_code']) rescue nil
 				if @user.nil?
-					render :json => {:success => false, :message => "Imei Code is not valid!" } and return
+					render :json => {:success => false, :message => "Imei Code is not valid!", :registration_status => false } and return
 				elsif @user.approve_status != 1
-					render :json => {:success => false, :message => "Your Account was not approved Please contact admin."} and return			  			
+					render :json => {:success => false, :message => "Your Account was not approved Please contact admin.", :registration_status => true} and return			  			
 				end
 			end
 		end

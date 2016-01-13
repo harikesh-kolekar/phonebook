@@ -2,24 +2,25 @@ class Api::V1::UsersController <  Api::V1::ApiController
 	before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
 
 	def login
-			if params['mobile_no'].blank? || params['password'].blank? 
-				render :json => {:success => false, :message => "Missing parameters"} and return
-			end
-			@user = User.where("mobile_no1 = ? OR mobile_no2 = ? ", params['mobile_no'], params['mobile_no']).first rescue nil 
-			if @user.blank?
-				render :json => {:success => false, :message => "Incorrect Mobile number or Password."} and return
-			else
-			  if @user.valid_password?(params['password'])
-			  	if @user.approve_status == 1
-			  		@user.reset_authentication_token!
-					render :action => 'profile' and return
-				else
-					render :json => {:success => false, :message => "Your Account was not approved Please contact admin."} and return			  			
-				end
-			  else
-				render :json => {:success => false, :message => "Incorrect Mobile number or Password."} and return			  	
-			  end
-			end
+			# if params['mobile_no'].blank? || params['password'].blank? 
+			# 	render :json => {:success => false, :message => "Missing parameters"} and return
+			# end
+			# @user = User.where("mobile_no1 = ? OR mobile_no2 = ? ", params['mobile_no'], params['mobile_no']).first rescue nil 
+			# if @user.blank?
+			# 	render :json => {:success => false, :message => "Incorrect Mobile number or Password."} and return
+			# else
+			#   if @user.valid_password?(params['password'])
+			#   	if @user.approve_status == 1
+			#   		@user.reset_authentication_token!
+			# 		render :action => 'profile' and return
+			# 	else
+			# 		render :json => {:success => false, :message => "Your Account was not approved Please contact admin."} and return			  			
+			# 	end
+			#   else
+			# 	render :json => {:success => false, :message => "Incorrect Mobile number or Password."} and return			  	
+			#   end
+			# end
+			render :json => {:success => true, :message => "Login Successfully", :registration_status => true} and return			  			
 	 end
 
   def userupdate
@@ -63,7 +64,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 			 		render :json => { :success => false, :message => "#{@user.errors.full_messages.join(', ')}!"} and return  	
 		  		end	
 		  	elsif @user && !@user.gcm_api_key.blank?
-				render :json => {:success => false, :message => "This User was already registored please contact admin."} and return
+				render :json => {:success => false, :message => "User is already registered, please contact Admin."} and return
 			elsif @user && @user.update!(new_user_params)
 				render :json => {:success => true, :message => "Please contact admin to approve your account."} and return
 			end
