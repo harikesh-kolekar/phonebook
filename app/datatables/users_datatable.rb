@@ -24,7 +24,7 @@ private
     end
     if user.approve_status == 1 || user.approve_status == 0
       action += "<a href='/users/#{user.id}/2'><i class='fa fa-thumbs-down'></i></a> "
-      action += "<a href='/change_password?user_id=#{user.id}' data-remote='true'> <i class='fa fa-key'></i> </a>" if user.approve_status == 1
+      # action += "<a href='/change_password?user_id=#{user.id}' data-remote='true'> <i class='fa fa-key'></i> </a>" if user.approve_status == 1
     end
       [
         user.name,
@@ -33,7 +33,7 @@ private
         user.designation,
         user.posting_district,
         "<img src ='#{user.icard.url(:thumb)}' class='profile_image'>",
-        "<div class='action-glyphicon'>"+action+"<a href='/profiles/#{user.id}'> <i class='fa fa-eye'></i></a> <a  href='/profiles/#{user.id}/edit'><i class='fa fa-pencil'></i></a> <a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/profiles/#{user.id}'><i class='fa fa-trash-o'></i></a><div>",
+        "<div class='action-glyphicon'>"+action#+"<a href='/profiles/#{user.id}'> <i class='fa fa-eye'></i></a> <a  href='/profiles/#{user.id}/edit'><i class='fa fa-pencil'></i></a> <a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/profiles/#{user.id}'><i class='fa fa-trash-o'></i></a><div>",
       ]
     end
   end

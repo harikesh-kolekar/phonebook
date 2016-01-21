@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031183111) do
+ActiveRecord::Schema.define(version: 20160121181736) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -73,26 +73,34 @@ ActiveRecord::Schema.define(version: 20151031183111) do
   end
 
   create_table "profiles", force: true do |t|
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
+    t.string   "name"
     t.string   "designation"
     t.string   "education"
     t.string   "phone_no"
-    t.string   "mobile_no"
+    t.string   "mobile_no1",         default: "",   null: false
+    t.string   "mobile_no2"
     t.string   "email"
-    t.string   "home_district"
-    t.string   "home_taluka"
+    t.string   "home_taluka_id"
     t.date     "date_of_birth"
     t.date     "date_of_join_dept"
+    t.date     "posting_date"
     t.string   "present_post"
-    t.string   "posting_district"
-    t.string   "posting_taluka"
-    t.string   "posting_date"
+    t.string   "home_taluka",        default: "NA"
+    t.string   "home_district",      default: "NA"
+    t.string   "posting_district",   default: "NA"
+    t.string   "posting_taluka",     default: "NA"
     t.string   "batch"
     t.string   "other_info"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "icard_file_name"
+    t.string   "icard_content_type"
+    t.integer  "icard_file_size"
+    t.datetime "icard_updated_at"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "talukas", force: true do |t|

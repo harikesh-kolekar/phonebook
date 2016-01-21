@@ -15,7 +15,7 @@ def upload_excel
     directory = "#{Rails.root}/public/xls_uploads/"
     path = File.join(directory, name)
     File.open(path, "wb") { |f| f.write(params[:file].read) }
-    not_saved = User.import(path)
+    not_saved = Profile.import(path)
     message = 'Profiles imported successfully.'
     message += "except row #{not_saved.join(' ,')}." if not_saved.length>0
     FileUtils.rm(path)
@@ -24,8 +24,8 @@ def upload_excel
 end
 
 def get_talukas
-  user = District.find_by_name(params[:name])
-  @home_district = user.talukas
+  d = District.find_by_name(params[:name])
+  @home_district = d.talukas
 end
 
 
@@ -40,14 +40,14 @@ end
   end
 
 def show
-  @user = User.find(params[:id])
+  @user = Profile.find(params[:id])
   
 end
 
 
   # GET /users/new
   def new
-    @user = User.new
+    @user = Profile.new
     @home_district = District.find_by_name("NA")
     @home_talukas = @home_district.talukas
     @home_taluka="NA"
@@ -75,10 +75,10 @@ end
   # POST /uses
   # POST /uses.json
   def create
-    @user = User.new(user_params)
-    @user.date_of_birth = string_to_date(params[:user][:date_of_birth]) 
-    @user.date_of_join_dept = string_to_date(params[:user][:date_of_join_dept]) 
-    @user.posting_date = string_to_date(params[:user][:posting_date]) 
+    @user = Profile.new(user_params)
+    @user.date_of_birth = string_to_date(params[:profile][:date_of_birth]) 
+    @user.date_of_join_dept = string_to_date(params[:profile][:date_of_join_dept]) 
+    @user.posting_date = string_to_date(params[:profile][:posting_date]) 
     @user.password = "123456789"
     respond_to do |format|
       if @user.save!
@@ -95,9 +95,9 @@ end
   # PATCH/PUT /notifications/1.json
   def update
     update_user_params = user_params
-    update_user_params["date_of_birth"] = string_to_date(params[:user][:date_of_birth]) 
-    update_user_params["date_of_join_dept"] = string_to_date(params[:user][:date_of_join_dept]) 
-    update_user_params["posting_date"] = string_to_date(params[:user][:posting_date]) 
+    update_user_params["date_of_birth"] = string_to_date(params[:profile][:date_of_birth]) 
+    update_user_params["date_of_join_dept"] = string_to_date(params[:profile][:date_of_join_dept]) 
+    update_user_params["posting_date"] = string_to_date(params[:profile][:posting_date]) 
 
     respond_to do |format|
       if @user.update(update_user_params)
@@ -113,12 +113,12 @@ end
 private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = Profile.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :imei_code, :gcm_api_key, :home_district, :posting_district, :email, :photo, :icard )
+      params.require(:profile).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :imei_code, :gcm_api_key, :home_district, :posting_district, :email, :photo, :icard )
     end
 
 end

@@ -46,14 +46,14 @@ class Api::V1::UsersController <  Api::V1::ApiController
 			unless check_params[:success]
 				render :json=>check_params and return  
 			end
-			@user = User.find_by_email(params['user']['email'])
-		    if @user 
-		    elsif (!params['user']['mobile_no1'].blank? && User.get_user(params['user']['mobile_no1'])) 
-		      @user = User.get_user(params['user']['mobile_no1'])
-		    elsif (!params['user']['mobile_no2'].blank? && User.get_user(params['user']['mobile_no2']))
-		      @user = User.get_user(params['user']['mobile_no2'])
-		    end
-			if @user.blank?
+			# @user = User.find_by_email(params['user']['email'])
+		 #    if @user 
+		 #    elsif (!params['user']['mobile_no1'].blank? && User.get_user(params['user']['mobile_no1'])) 
+		 #      @user = User.get_user(params['user']['mobile_no1'])
+		 #    elsif (!params['user']['mobile_no2'].blank? && User.get_user(params['user']['mobile_no2']))
+		 #      @user = User.get_user(params['user']['mobile_no2'])
+		 #    end
+			# if @user.blank?
 				@user = User.new(new_user_params)
 				@user.decode_base64_photo(params['user']['photo_data'], params['user']['photo_content_type'], params['user']['photo_original_filename']) unless(params['user']['photo_data'].blank? || params['user']['photo_content_type'].blank? || params['user']['photo_original_filename'].blank?)
 		  		@user.decode_base64_icard(params['user']['icard_data'], params['user']['icard_content_type'], params['user']['icard_original_filename']) unless(params['user']['icard_data'].blank? || params['user']['icard_content_type'].blank? || params['user']['icard_original_filename'].blank?)
@@ -63,11 +63,11 @@ class Api::V1::UsersController <  Api::V1::ApiController
 				else
 			 		render :json => { :success => false, :message => "#{@user.errors.full_messages.join(', ')}!"} and return  	
 		  		end	
-		  	elsif @user && !@user.gcm_api_key.blank?
-				render :json => {:success => false, :message => "User is already registered, please contact Admin."} and return
-			elsif @user && @user.update!(new_user_params)
-				render :json => {:success => true, :message => "Please contact admin to approve your account."} and return
-			end
+		 #  	elsif @user && !@user.gcm_api_key.blank?
+			# 	render :json => {:success => false, :message => "User is already registered, please contact Admin."} and return
+			# elsif @user && @user.update!(new_user_params)
+			# 	render :json => {:success => true, :message => "Please contact admin to approve your account."} and return
+			# end
 		# rescue Exception => e
 		# 	render :json => {:success => false, :message => "#{e.message}"} and return
 		# end

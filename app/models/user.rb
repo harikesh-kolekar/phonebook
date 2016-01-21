@@ -57,10 +57,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable#, :authentication_keys => {email: false, login: true}
+         :recoverable, :rememberable, :trackable, :token_authenticatable#, :authentication_keys => {email: false, login: true}
 
-   validates :mobile_no1, uniqueness: true, presence: true
-   validates :mobile_no2, uniqueness: true, allow_blank: true
+   # validates :mobile_no1, uniqueness: true, presence: true
+   # validates :mobile_no2, uniqueness: true, allow_blank: true
    validates :imei_code, uniqueness: true, allow_blank: true
    validates :gcm_api_key, uniqueness: true, allow_blank: true
 
@@ -75,11 +75,14 @@ class User < ActiveRecord::Base
    scope :approve_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 1') }
    scope :pending_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 0') }
    scope :declined_users, -> { where('gcm_api_key IS NOT NULL and approve_status = 2') }
-   scope :profile, -> { where('gcm_api_key IS NULL or (gcm_api_key IS NOT NULL and approve_status = 1) ') }
+   # scope :profile, -> { where('gcm_api_key IS NULL or (gcm_api_key IS NOT NULL and approve_status = 1) ') }
+   # scope :profile, -> { where('gcm_api_key IS NULL') }
 
    after_save :add_gcm_redistration_id_to_notification_key
 
-
+def self.profile
+  Profile.all
+end
 def self.import(file)
 	workbook = RubyXL::Parser.parse(file)
 	worksheet = workbook[0]
@@ -87,38 +90,39 @@ def self.import(file)
   not_saved = []
   (1...data.length).each do |i|
     begin
-      if(data[i][2].blank? && data[i][3].blank? && data[i][4].blank? && data[i][1].blank? && data[i][5].blank? && data[i][6].blank? && data[i][7].blank? && data[i][8].blank? )
+      if(data[i][2].to_s.blank? && data[i][3].to_s.blank? && data[i][4].to_s.blank? && data[i][1].to_s.blank? && data[i][5].to_s.blank? && data[i][6].to_s.blank? && data[i][7].to_s.blank? && data[i][8].to_s.blank? )
         next
       end
-      if((data[i][2].blank? && data[i][3].blank?) || data[i][4].blank?)
+      if(data[i][2].to_s.blank? && data[i][3].to_s.blank? && data[i][4].to_s.blank?)
         not_saved<<i+1
         next
       end  
-      u = User.find_by_email(data[i][4])
+      u = User.find_by_email(data[i][4].to_s)
       if u 
-      elsif (!data[i][2].blank? && get_user(data[i][2])) 
-        u = get_user(data[i][2])
-      elsif (!data[i][3].blank? && get_user(data[i][3]))
-        u = get_user(data[i][3])
+      elsif (!data[i][2].to_s.blank? && get_user(data[i][2].to_s)) 
+        u = get_user(data[i][2].to_s)
+      elsif (!data[i][3].to_s.blank? && get_user(data[i][3].to_s))
+        u = get_user(data[i][3].to_s)
       else
         u = User.new(:password=>"123456789")
       end
-      u.name = data[i][0]
-      u.designation = data[i][1]
-      if data[i][2].blank?
-      		u.mobile_no1 = data[i][3]
+      u.name = data[i][0].to_s
+      u.designation = data[i][1].to_s
+      if data[i][2].to_s.blank?
+      		u.mobile_no1 = data[i][3].to_s
       else
-      	u.mobile_no1 = data[i][2]
-      	u.mobile_no2 = data[i][3]
+      	u.mobile_no1 = data[i][2].to_s
+      	u.mobile_no2 = data[i][3].to_s
       end
-      u.email = data[i][4]
-      u.posting_district = data[i][5]
-      u.home_district = data[i][6]
-      u.date_of_birth = self.convert_string_to_date data[i][7]
-      u.other_info = data[i][8]
+      u.email = data[i][4].to_s
+      u.posting_district = data[i][5].to_s
+      u.home_district = data[i][6].to_s
+      u.date_of_birth = self.convert_string_to_date data[i][7].to_s
+      u.other_info = data[i][8].to_s
 
       u.save!
     rescue Exception => e
+      binding.pry
       not_saved<<i+1
     end
   end
