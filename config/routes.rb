@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'users/:user_id/:status' => 'users#updat_status', :as => "updat_status_user"
   
 
-  
+  resources :users
   namespace :api do
   namespace :v1 do
       resources :notifications
