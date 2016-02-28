@@ -59,8 +59,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :token_authenticatable#, :authentication_keys => {email: false, login: true}
 
-   # validates :mobile_no1, uniqueness: true, presence: true
-   # validates :mobile_no2, uniqueness: true, allow_blank: true
+   validates :mobile_no1, uniqueness: true, presence: true
+   validates :mobile_no2, uniqueness: true, allow_blank: true
    validates :imei_code, uniqueness: true, allow_blank: true
    validates :gcm_api_key, uniqueness: true, allow_blank: true
 
