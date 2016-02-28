@@ -55,7 +55,7 @@ class Profile < ActiveRecord::Base
         next
       end  
 
-      u = Profile.find_by_email(data[i][4].to_s)
+      u = Profile.find_by_email(data[i][4].to_s) unless data[i][4].to_s.blank?
       if u 
       elsif (!data[i][2].to_s.blank? && get_user(data[i][2].to_s)) 
         u = get_user(data[i][2].to_s)
