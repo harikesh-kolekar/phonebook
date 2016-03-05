@@ -40,6 +40,8 @@ class Profile < ActiveRecord::Base
   has_attached_file :icard, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/i-card.png"
   validates_attachment_content_type :icard, content_type: /\Aimage\/.*\Z/
 
+  self.per_page = 100
+  
 	def self.import(file)
 	workbook = RubyXL::Parser.parse(file)
 	worksheet = workbook[0]
