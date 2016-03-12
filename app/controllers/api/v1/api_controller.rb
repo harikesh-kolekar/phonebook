@@ -18,6 +18,7 @@ class Api::V1::ApiController < ActionController::Base
 				render :json => {:success => false, :message => "Imei Code should not be blank!" } and return
 			else
 				@user = User.find_by(:imei_code=>params['imei_code']) rescue nil
+				@user.update_attributes!(gcm_api_key: params['gcm_api_key'])if params['gcm_api_key'].present? && @user
 				if @user.nil?
 					render :json => {:success => false, :message => "Imei Code is not valid!", :registration_status => false } and return
 				elsif @user.approve_status != 1
