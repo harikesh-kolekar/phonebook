@@ -45,6 +45,7 @@
 #  icard_updated_at       :datetime
 #  lat                    :string(255)
 #  long                   :string(255)
+#  mobile_no              :integer
 #
 # Indexes
 #
@@ -58,9 +59,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :token_authenticatable#, :authentication_keys => {email: false, login: true}
-
-   validates :mobile_no1, uniqueness: true, presence: true
-   validates :mobile_no2, uniqueness: true, allow_blank: true
+   # before_validation :set_mobile_no
+   # validates :mobile_no, uniqueness: true, presence: true
+   # validates :mobile_no2, uniqueness: true, allow_blank: true
    validates :imei_code, uniqueness: true, allow_blank: true
    validates :gcm_api_key, uniqueness: true, allow_blank: true
 
@@ -79,7 +80,9 @@ class User < ActiveRecord::Base
    # scope :profile, -> { where('gcm_api_key IS NULL') }
 
    after_save :add_gcm_redistration_id_to_notification_key
-
+def  set_mobile_no
+  self.mobile_no = self.mobile_no1
+end
 def self.profile
   Profile.all
 end

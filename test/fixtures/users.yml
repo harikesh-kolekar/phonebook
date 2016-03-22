@@ -45,6 +45,7 @@
 #  icard_updated_at       :datetime
 #  lat                    :string(255)
 #  long                   :string(255)
+#  mobile_no              :integer
 #
 # Indexes
 #

@@ -18,7 +18,7 @@ p "Admin Created"
 				Designation.find_or_create_by(:name=>"Dy.Collector")
 				Designation.find_or_create_by(:name=>"Tahsildar")
 				Designation.find_or_create_by(:name=>"Naib-Tahsildar ")
-				Designation.find_or_create_by(:name=>"Other ")
+				Designation.find_or_create_by(:name=>"Other")
 	
 p "Designation Created"
 

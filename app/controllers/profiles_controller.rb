@@ -79,7 +79,6 @@ end
     @user.date_of_birth = string_to_date(params[:profile][:date_of_birth]) 
     @user.date_of_join_dept = string_to_date(params[:profile][:date_of_join_dept]) 
     @user.posting_date = string_to_date(params[:profile][:posting_date]) 
-    @user.password = "123456789"
     respond_to do |format|
       if @user.save!
         format.html { redirect_to profiles_url, notice: 'Profile was successfully created.' }
