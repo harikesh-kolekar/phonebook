@@ -37,18 +37,18 @@ class NotificationsController < AdminController
     end
     respond_to do |format|
       if @notification.save!
-        params[:notification][:designation_ids].each do |designation_id|
-          if(designation_id.present?)
-            response = $gcm.send_with_notification_key(eval("$notification_key_"+designation_id.to_s), {
-                data: {id: @notification.id, title: @notification.title},
-                collapse_key: "admin_notification"})
-            p "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
-            p response
-            logger.info "+++++++++++++++++++++++++++++++++GSM send_with_notification_key++++++++++++++++++++++++ "
-            logger.info response
-          end
+        designations = Designation.where(id: params[:notification][:designation_ids])
+        user = User.where(designation: designations, approve_status = 1)
+        page = user.paginate(:page =>1).total_pages
+        i=1
+        while i<page
+          registration_ids = user.paginate(:page =>i).collect(&:gcm_api_key)
+          options = {data: {id: @notification.id, title: @notification.title}, collapse_key: "admin_notification"}
+          response = $gcm.send(registration_ids, options)
+          logger.info "+++++++++++++++++++++++++++++++++GSM send++++++++++++++++++++++++ "
+          logger.info response
+          i = i+1
         end
-
         format.html { redirect_to notifications_url, notice: 'Notification was successfully created.' }
         format.json { render :show, status: :created, location: @notification }
       else

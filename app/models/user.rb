@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
    # scope :profile, -> { where('gcm_api_key IS NULL or (gcm_api_key IS NOT NULL and approve_status = 1) ') }
    # scope :profile, -> { where('gcm_api_key IS NULL') }
 
-   after_save :add_gcm_redistration_id_to_notification_key
+   # after_save :add_gcm_redistration_id_to_notification_key
 def  set_mobile_no
   self.mobile_no = self.mobile_no1
 end
