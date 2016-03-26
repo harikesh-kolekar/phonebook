@@ -38,7 +38,7 @@ class NotificationsController < AdminController
     respond_to do |format|
       if @notification.save!
         designations = Designation.where(id: params[:notification][:designation_ids])
-        user = User.where(designation: designations, approve_status = 1)
+        user = User.where(designation: designations, approve_status: 1)
         page = user.paginate(:page =>1).total_pages
         i=1
         while i<page
