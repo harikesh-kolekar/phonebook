@@ -41,7 +41,7 @@ class NotificationsController < AdminController
         user = User.where(designation: designations, approve_status: 1)
         page = user.paginate(:page =>1).total_pages
         i=1
-        while i<page
+        while i<=page
           registration_ids = user.paginate(:page =>i).collect(&:gcm_api_key)
           options = {data: {id: @notification.id, title: @notification.title}, collapse_key: "admin_notification"}
           response = $gcm.send(registration_ids, options)
