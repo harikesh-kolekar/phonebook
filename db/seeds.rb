@@ -11,13 +11,24 @@ admin.save
 
 p "Admin Created"
 
+#++++++++++++++++++++++++++++++++++++Change designation name from all profile +++++++++++++++
+
+Profile.where(:designation => "Naib-Tahsildar" ).each do|p|
+	p.designation = "Naib Tahsildar"
+	p.save
+end
+User.where(:designation => "Naib-Tahsildar").each do|p|
+	p.designation = "Naib Tahsildar"
+	p.save
+end
+
 #++++++++++++++++++++++++++++++Designation+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		
 				Designation.find_or_create_by(:name=>"Dy.Collector")
 				Designation.find_or_create_by(:name=>"Additional Collector")
 				Designation.find_or_create_by(:name=>"Dy.Collector")
 				Designation.find_or_create_by(:name=>"Tahsildar")
-				Designation.find_or_create_by(:name=>"Naib-Tahsildar ")
+				Designation.find_or_create_by(:name=>"Naib Tahsildar")
 				Designation.find_or_create_by(:name=>"Others")
 	
 p "Designation Created"
