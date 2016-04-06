@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  get 'users/:id/edit' => 'users#edit'
   get 'users/:type' => 'users#index', :as => "users"
   post 'users/:user_id/reset_password' => 'users#reset_password', :as => "reset_password_user"
   get 'users/:user_id/:status' => 'users#updat_status', :as => "updat_status_user"
