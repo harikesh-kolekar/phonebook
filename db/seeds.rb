@@ -5,7 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Profile.destroy_all
 admin=Admin.find_or_create_by(:email=>"admin@admin.com")
 admin.password="123456789"
 admin.save
