@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :gallaries
       get "districts" => 'districts#index' 
       get "profiles" => 'profiles#index' 
+      get "deleted_profile" => 'profiles#deleted_profile' 
       resources :users do
         post :login, :on => :collection
         post :logout, :on => :collection

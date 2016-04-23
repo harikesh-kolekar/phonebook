@@ -9,4 +9,8 @@ class Api::V1::ProfilesController < Api::V1::ApiController
 		@notification_count = Notification.joins(:designations).where("designations.name='#{@user.designation}'").count
 	end
 	
+	def deleted_profile
+		
+	end
+	
 end
