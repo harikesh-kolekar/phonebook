@@ -117,6 +117,6 @@ Rails.application.configure do
   $key_name_5 = "notification_production_5"
 
   p = Profile.create()
- $get_deleted_record_ids = Profile.get_deleted_record_ids
- p.destroy
+  $get_deleted_record_ids = Profile.get_deleted_record_ids
+  p.destroy
   end
