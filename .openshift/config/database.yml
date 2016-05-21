@@ -37,4 +37,4 @@ test: &test
   <<: *defaults
 
 production:
-  <<: *defaults
+  <<: *mysql
