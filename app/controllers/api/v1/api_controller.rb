@@ -2,7 +2,7 @@ class Api::V1::ApiController < ActionController::Base
 	# before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
 	before_filter :valid_imei_code, :except  => [:create, :forgotpassword]
 	before_filter :debug
-	# rescue_from ::Exception, with: :error_occurred
+	rescue_from ::Exception, with: :error_occurred
 
 	protected
 		def string_to_date(date)

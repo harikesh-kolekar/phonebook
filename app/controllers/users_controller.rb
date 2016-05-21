@@ -72,6 +72,8 @@ def edit
 	  	user.approve_status = params[:status].to_i 
 	  	user.save!
 	  	if user.approve_status == 1 && user.gcm_api_key.present?
+        user.approved_at = Time.now
+        user.save!
 	  		registration_ids = [user.gcm_api_key]
 	  		options = {data: {id: user.id, message: "User is Approved"}, collapse_key: "user_approved"}
 	  		response = $gcm.send(registration_ids, options)

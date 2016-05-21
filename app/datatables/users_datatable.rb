@@ -44,7 +44,7 @@ private
   end
 
   def fetch_users
-    users = User.send(params[:type]).order("#{sort_column} #{sort_direction}")
+    users = User.send(params[:type]).order(:approved_at)#("#{sort_column} #{sort_direction}")
     users = users.page(page).per_page(per_page)
     if params[:search][:value].present?
       users = users.where("name like :search or email like :search or mobile_no1 like :search or mobile_no2 like :search or designation like :search", search: "%#{params[:search][:value]}%")

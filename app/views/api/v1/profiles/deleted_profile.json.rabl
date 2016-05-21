@@ -1,1 +1,1 @@
-node(:deleted_profile_ids) { Profile.get_deleted_record_ids }
+node(:deleted_profile_ids) { $get_deleted_record_ids }

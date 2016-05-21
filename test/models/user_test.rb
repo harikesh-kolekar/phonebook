@@ -46,6 +46,7 @@
 #  lat                    :string(255)
 #  long                   :string(255)
 #  mobile_no              :integer
+#  approved_at            :datetime
 #
 # Indexes
 #
