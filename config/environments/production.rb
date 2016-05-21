@@ -119,5 +119,5 @@ Rails.application.configure do
   # p = Profile.create()
   # $get_deleted_record_ids = Profile.get_deleted_record_ids
   # p.destroy
-  $get_deleted_record_ids = []
+  $get_deleted_record_ids = Profile.get_deleted_record_ids
   end
