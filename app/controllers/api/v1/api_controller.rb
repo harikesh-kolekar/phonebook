@@ -1,10 +1,16 @@
 class Api::V1::ApiController < ActionController::Base
 	# before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
 	before_filter :valid_imei_code, :except  => [:create, :forgotpassword]
-	before_filter :debug
+	before_filter :debug, :deleted_profile_ids
 	rescue_from ::Exception, with: :error_occurred
 
 	protected
+		def deleted_profile_ids
+			if $get_deleted_record_ids return
+			p = Profile.create()
+			$get_deleted_record_ids = Profile.get_deleted_record_ids
+		    p.destroy
+		end
 		def string_to_date(date)
 			Date.strptime(date,"%d/%m/%Y") rescue ''
 	    end
