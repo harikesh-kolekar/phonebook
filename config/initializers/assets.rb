@@ -11,6 +11,7 @@ Rails.application.config.assets.version = '1.0'
  Rails.application.config.assets.precompile += %w( devise.css )
  Rails.application.config.assets.precompile += %w( gallary.css )
  Rails.application.config.assets.precompile += %w( gallary.js )
- p = Profile.create()
- $get_deleted_record_ids = Profile.get_deleted_record_ids
- p.destroy
+ # p = Profile.create()
+ # $get_deleted_record_ids = Profile.get_deleted_record_ids
+ # p.destroy
+ $get_deleted_record_ids  = []
