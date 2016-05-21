@@ -6,7 +6,7 @@ class Api::V1::ApiController < ActionController::Base
 
 	protected
 		def deleted_profile_ids
-			if $get_deleted_record_ids return
+			return if $get_deleted_record_ids
 			p = Profile.create()
 			$get_deleted_record_ids = Profile.get_deleted_record_ids
 		    p.destroy
