@@ -92,7 +92,7 @@ def self.get_deleted_record_ids
 end
 
 def add_deleted_record
-  $get_deleted_record_ids << self.id
+  # $get_deleted_record_ids << self.id
 end
 
 def self.get_user(mobile)
