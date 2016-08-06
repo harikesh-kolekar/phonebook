@@ -15,7 +15,7 @@ gem 'rake', '~> 0.9.6'
 # For example, if you use rails + mysql, you can:
 #
 # $ rhc env set BUNDLE_WITHOUT="development test postgresql"
-#
+# 
 group :development, :test do
   gem 'sqlite3'
   gem 'minitest'
