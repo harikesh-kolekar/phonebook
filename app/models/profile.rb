@@ -88,11 +88,12 @@ class Profile < ActiveRecord::Base
 end
 
 def self.get_deleted_record_ids
-  (1..Profile.maximum('id')).to_a - (Profile.all.collect(&:id)) 
+  (1..Profile.maximum('id')).to_a - (Profile.all.collect(&:id))
 end
 
 def add_deleted_record
-  $get_deleted_record_ids ? $get_deleted_record_ids << self.id : $get_deleted_record_ids = [self.id ]
+  get_deleted_record_ids unless $get_deleted_record_ids
+  $get_deleted_record_ids << self.id
 end
 
 def self.get_user(mobile)
