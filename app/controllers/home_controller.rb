@@ -1,4 +1,5 @@
 class HomeController < AdminController
+	skip_before_filter :authenticate_admin!
 	def delete_all
 		if params[:delete_profile] == "delete_all"
 			Profile.destroy_all
