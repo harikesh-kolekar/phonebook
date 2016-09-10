@@ -86,7 +86,7 @@ class Profile < ActiveRecord::Base
   end
   return not_saved
 end
-
+ 
 def self.get_deleted_record_ids
   (1..Profile.maximum('id')).to_a - (Profile.all.collect(&:id))
 end
