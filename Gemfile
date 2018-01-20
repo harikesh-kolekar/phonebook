@@ -31,7 +31,7 @@ end
 #   gem 'mysql2'
 # end
 
-  gem 'pg'
+ gem 'pg' , '~> 0.21.0'
 
 ### / OpenShift changes
 

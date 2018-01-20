@@ -96,7 +96,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    pg (1.0.0)
+    pg (0.21.0)
     polyglot (0.3.5)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -192,7 +192,7 @@ DEPENDENCIES
   minitest
   oj
   paperclip
-  pg
+  pg (~> 0.21.0)
   pry
   rabl
   rails (= 4.1.4)
