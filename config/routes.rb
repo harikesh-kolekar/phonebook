@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'users/:user_id/reset_password' => 'users#reset_password', :as => "reset_password_user"
   get 'users/:user_id/:status' => 'users#updat_status', :as => "updat_status_user"
   post 'delete_all' => 'home#delete_all'
+  get '/articles' => 'profiles#index'
 
   resources :users
   namespace :api do
