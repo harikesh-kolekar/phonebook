@@ -12,8 +12,12 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
-/config/database.yml
-/public/system
-/public/xls_uploads
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+log/
+tmp/
+
+# Ignore Byebug command history file.
+.byebug_history
