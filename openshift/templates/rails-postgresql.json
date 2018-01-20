@@ -208,7 +208,7 @@
                 ],
                 "readinessProbe": {
                   "timeoutSeconds": 3,
-                  "initialDelaySeconds": 5,
+                  "initialDelaySeconds": 50,
                   "httpGet": {
                     "path": "/admins/sign_in",
                     "port": 8080
@@ -216,7 +216,7 @@
                 },
                 "livenessProbe": {
                   "timeoutSeconds": 3,
-                  "initialDelaySeconds": 10,
+                  "initialDelaySeconds": 100,
                   "httpGet": {
                     "path": "/admins/sign_in",
                     "port": 8080
