@@ -43,7 +43,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.date :date_of_join_dept
       t.string :present_post
       t.string :posting_taluka_id
-      t.string :posting_date
+      t.date :posting_date
       t.string :batch
       t.string :other_info
       t.string :imei_code
