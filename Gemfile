@@ -32,7 +32,7 @@ gem 'rake', '~> 0.9.6'
 # end
 
  gem 'pg' , '~> 0.21.0'
-
+ gem 'puma', '~> 3.7'
 ### / OpenShift changes
 
 # Use SCSS for stylesheets
