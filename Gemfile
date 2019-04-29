@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
+ruby '2.1.5'
 
 gem 'rails', '4.1.4'
 
 ### OpenShift Online changes:
 
 # Fix the conflict with the system 'rake':
-gem 'rake', '~> 0.9.6'
 
 # Support for databases and environment.
 # Use 'sqlite3' for testing and development and mysql and postgresql
@@ -31,7 +31,7 @@ gem 'rake', '~> 0.9.6'
 #   gem 'mysql2'
 # end
 
- gem 'pg' , '~> 0.21.0'
+ # gem 'pg' , '~> 0.21.0'
  gem 'puma', '~> 3.7'
 ### / OpenShift changes
 
@@ -79,3 +79,7 @@ gem 'rabl'
 gem 'oj'
 gem 'devise-token_authenticatable'
 gem 'gcm'
+gem "capistrano", "~> 3.11", require: false
+gem 'capistrano-bundler', '~> 1.5'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'

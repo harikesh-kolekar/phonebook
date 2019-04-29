@@ -1,3 +1,4 @@
+require 'capistrano/bundler'
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
@@ -9,6 +10,16 @@ set :repo_url, "git@github.com:harikesh-kolekar/phonebook.git"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/developer/phonebook"
+
+# namespace :deploy do
+
+#   desc "Show pending changes"
+#   task :pending do
+#   	execute 'bundle install' 
+#   end
+# end
+
+# after 'deploy:publishing', 'deploy:restart'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
