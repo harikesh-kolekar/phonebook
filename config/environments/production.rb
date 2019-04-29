@@ -115,6 +115,4 @@ Rails.application.configure do
   $key_name_4 = "notification_production_4"
   $notification_key_5='APA91bHQjQdF8NRHpxbAgCt0ICa_nPworhi4dansBZ6gY3ufosKBm-AZT2EQMadXrhv21suIsK97hM5MLAEPd7SNZQ963r20FFnQDfglpi6U5qOEHJrcZ276kB00mlNj2qOLCb211CAR'
   $key_name_5 = "notification_production_5"
-
-  
   end
