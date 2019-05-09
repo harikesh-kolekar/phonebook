@@ -58,7 +58,7 @@ namespace :deploy do
     on roles(:app) do
       invoke 'rvm1:hook'
       within release_path do
-        execute :bundle, :exec, :"rake db:migrate RAILS_ENV=#{fetch(:stage)}"
+        execute :bundle, :exec, :"rake db:create RAILS_ENV=#{fetch(:stage)}"
       end
     end
   end
@@ -81,7 +81,7 @@ namespace :deploy do
   end
 
   before 'deploy:migrate', 'deploy:create_db'
-  after :finished, 'deploy:seed'
+  # after :finished, 'deploy:seed'
   after :finished, 'app:restart'
 end
 
@@ -101,7 +101,7 @@ namespace :app do
     on roles(:app) do
       invoke 'rvm1:hook'
       within "#{fetch(:deploy_to)}/current/" do
-        # execute :bundle, :exec, :'pumactl -F config/puma.rb stop'
+        execute :bundle, :exec, :'pumactl -F config/puma.rb stop'
 
       end
     end
@@ -117,8 +117,8 @@ namespace :app do
         # end
 
         # execute :bundle, :exec, :"puma -C config/puma.rb -e #{fetch(:stage)}"
-        execute 'fuser -k 3000/tcp'
-        execute 'rails s -d'
+        execute 'fuser -k 3000/tcp' rescue "not killed"
+        execute :bundle, :exec, :"rails s -d -e #{fetch(:stage)}" rescue "server not started"
       end
     end
   end

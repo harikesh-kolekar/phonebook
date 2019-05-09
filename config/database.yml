@@ -6,14 +6,14 @@
 #   pool: 5
 #   timeout: 5000
 
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: sg_development
-  pool: 20
-  username: <%= ENV['USER'] == 'root' ? ENV['SUDO_USER'] : ENV['USER'] %>
-  password: harry
-  host: localhost
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: sg_development
+#   pool: 20
+#   username: <%= ENV['USER'] == 'root' ? ENV['SUDO_USER'] : ENV['USER'] %>
+#   password: harry
+#   host: localhost
 
 test:
   adapter: sqlite3
@@ -21,7 +21,7 @@ test:
   pool: 5
   timeout: 5000
 
-staging:
+development:
   adapter: postgresql
   encoding: unicode
   database: 'phonebook_staging'
