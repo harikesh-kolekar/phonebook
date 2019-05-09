@@ -13,11 +13,11 @@ test:
   pool: 5
   timeout: 5000
 
-production:
+staging:
   adapter: postgresql
   encoding: unicode
   pool: 20
-  username: postgres
+  username: rails_dev
   password: Welcome@1234
   host: localhost
 
