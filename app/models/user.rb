@@ -24,7 +24,7 @@
 #  date_of_join_dept      :date
 #  present_post           :string(255)
 #  posting_taluka         :string(255)      default("NA")
-#  posting_date           :date(255)
+#  posting_date           :date
 #  batch                  :string(255)
 #  other_info             :string(255)
 #  imei_code              :string(255)
@@ -45,7 +45,6 @@
 #  icard_updated_at       :datetime
 #  lat                    :string(255)
 #  long                   :string(255)
-#  mobile_no              :integer
 #  approved_at            :datetime
 #
 # Indexes

@@ -30,11 +30,11 @@ class NotificationsController < AdminController
   # POST /notifications
   # POST /notifications.json
   def create
-    @notification = Notification.new(notification_params)
-    @notification.notification_type = "Admin"
     if params[:notification][:designation_ids].length == 1 || params[:notification][:designation_ids].length == 0
       params[:notification][:designation_ids] = Designation.all.collect(&:id)
     end
+    @notification = Notification.new(notification_params)
+    @notification.notification_type = "Admin"
     respond_to do |format|
       if @notification.save!
         designations = Designation.where(id: params[:notification][:designation_ids]).collect(&:name)

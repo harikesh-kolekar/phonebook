@@ -17,7 +17,7 @@ gem 'rails', '4.1.4'
 # $ rhc env set BUNDLE_WITHOUT="development test postgresql"
 # 
 # group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.13'
   gem 'minitest'
   gem 'thor'
   gem 'annotate'
@@ -27,8 +27,8 @@ gem 'rails', '4.1.4'
 
 
 # Add support for the MySQL
-# group :production, :mysql do
-#   gem 'mysql2'
+# group :production do
+#   gem 'pg', '~> 0.11'
 # end
 
  # gem 'pg' , '~> 0.21.0'
@@ -83,3 +83,4 @@ gem "capistrano", "~> 3.11", require: false
 gem 'capistrano-bundler', '~> 1.5'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
+gem 'rvm1-capistrano3', require: false
