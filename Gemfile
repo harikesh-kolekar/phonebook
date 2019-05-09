@@ -17,7 +17,7 @@ gem 'rails', '4.1.4'
 # $ rhc env set BUNDLE_WITHOUT="development test postgresql"
 # 
 # group :development, :test do
-  gem 'sqlite3', '~> 1.3.13'
+  # gem 'sqlite3', '~> 1.3.13'
   gem 'minitest'
   gem 'thor'
   gem 'annotate'
@@ -27,8 +27,8 @@ gem 'rails', '4.1.4'
 
 
 # Add support for the MySQL
-# group :production do
-#   gem 'pg', '~> 0.11'
+# group :production, do
+  gem 'pg', '~> 0.11'
 # end
 
  # gem 'pg' , '~> 0.21.0'
