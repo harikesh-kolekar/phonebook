@@ -8,8 +8,8 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 set :branch,         'master'
-set :stage,          :staging
-set :rails_env,      :staging
+set :stage,          :development
+set :rails_env,      :development
 set :keep_releases,  3
 server "101.53.157.253", user: "developer", roles: %w{app db web}
 set :deploy_to, "/home/developer/staging/phonebook"

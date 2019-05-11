@@ -32,7 +32,8 @@ gem 'rails', '4.1.4'
 # end
 
  # gem 'pg' , '~> 0.21.0'
- gem 'puma', '~> 3.7'
+ # gem 'puma', '~> 3.7'
+ gem 'unicorn' 
 ### / OpenShift changes
 
 # Use SCSS for stylesheets
@@ -84,3 +85,4 @@ gem 'capistrano-bundler', '~> 1.5'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'rvm1-capistrano3', require: false
+gem 'capistrano3-unicorn'

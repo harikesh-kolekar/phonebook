@@ -81,7 +81,7 @@ namespace :deploy do
   end
 
   before 'deploy:migrate', 'deploy:create_db'
-  # after :finished, 'deploy:seed'
+  after :finished, 'deploy:seed'
   after :finished, 'app:restart'
 end
 
@@ -113,12 +113,13 @@ namespace :app do
       invoke 'rvm1:hook'
       within "#{fetch(:deploy_to)}/current/" do
         # if test("[ -f #{deploy_to}/current/tmp/pids/puma.pid ]")
-          # execute :bundle, :exec, :'pumactl -F config/puma.rb stop'
+        #   execute :bundle, :exec, :'pumactl -F config/puma.rb stop'
         # end
 
         # execute :bundle, :exec, :"puma -C config/puma.rb -e #{fetch(:stage)}"
-        execute 'fuser -k 3000/tcp' rescue "not killed"
-        execute :bundle, :exec, :"rails s -d -e #{fetch(:stage)}" rescue "server not started"
+        # execute 'fuser -k 3000/tcp' rescue "not killed"
+        # execute :bundle, :exec, :"rails s -d -e #{fetch(:stage)}" rescue "server not started"
+        invoke 'unicorn:reload'
       end
     end
   end
