@@ -1,44 +1,88 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # In the development environment your application's code is reloaded on
-  # every request. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  # Code is not reloaded between requests.
+  config.cache_classes = true
 
-  # Do not eager load code on boot.
-  config.eager_load = false
+  # Eager load code on boot. This eager loads most of Rails and
+  # your application in memory, allowing both threaded web servers
+  # and those relying on copy on write to perform better.
+  # Rake tasks automatically ignore this option for performance.
+  config.eager_load = true
 
-  # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  # Full error reports are disabled and caching is turned on.
+  config.consider_all_requests_local       = false
+  config.action_controller.perform_caching = true
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Enable Rack::Cache to put a simple HTTP cache in front of your application
+  # Add `rack-cache` to your Gemfile before enabling this.
+  # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
+  # config.action_dispatch.rack_cache = true
 
-  # Print deprecation notices to the Rails logger.
-  config.active_support.deprecation = :log
+  # Disable Rails's static asset server (Apache or nginx will already do this).
+  config.serve_static_assets = false
 
-  # Raise an error on page load if there are pending migrations.
-  config.active_record.migration_error = :page_load
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = :uglifier
+  # config.assets.css_compressor = :sass
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
-  config.assets.debug = true
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = true
 
-  # Adds additional error checking when serving assets at runtime.
-  # Checks for improperly declared sprockets dependencies.
-  # Raises helpful error messages.
-  config.assets.raise_runtime_errors = true
+  # Generate digests for assets URLs.
+  config.assets.digest = true
 
-  # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
+  # `config.assets.precompile` has moved to config/initializers/assets.rb
 
+  # Specifies the header that your server uses for sending files.
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
+  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
-   # Expands the lines which load the assets
-  config.assets.debug = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  # config.force_ssl = true
+
+  # Set to :debug to see everything in the log.
+  config.log_level = :info
+
+  # Prepend all log lines with the following tags.
+  # config.log_tags = [ :subdomain, :uuid ]
+
+  # Use a different logger for distributed setups.
+  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+  config.logger = Logger.new(STDOUT)
+
+  # Use a different cache store in production.
+  # config.cache_store = :mem_cache_store
+
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  # config.action_controller.asset_host = "http://assets.example.com"
+
+  # Precompile additional assets.
+  # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
+  # config.assets.precompile += %w( search.js )
+
+  # Ignore bad email addresses and do not raise email delivery errors.
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  # config.action_mailer.raise_delivery_errors = false
+
+  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+  # the I18n.default_locale when a translation cannot be found).
+  config.i18n.fallbacks = true
+
+  # Send deprecation notices to registered listeners.
+  config.active_support.deprecation = :notify
+
+  # Disable automatic flushing of the log to improve performance.
+  # config.autoflush_log = false
+
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new
+
+  # Do not dump schema after migrations.
+  config.active_record.dump_schema_after_migration = false
+
+  #Email
+  config.action_mailer.default_url_options = { :host => 'phonebook-kolekar.rhcloud.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
@@ -51,32 +95,24 @@ Rails.application.configure do
   :enable_starttls_auto => true  }
   
   
-  config.action_mailer.asset_host = "localhost:3000"
+  config.action_mailer.asset_host = "phonebook-kolekar.rhcloud.com/"
 
   config.default_content_type = "text/html"
 
 
-
-
+  #GSM Key
   $gcm = GCM.new("AIzaSyBpYRrZq1e9H3hkHe9AQ3OynCHSKK-oW7c")
-  $notification_key='APA91bHbNzqfWHytT8X4ezJ4Drbk-WWqJU4qiKSXVER9eOLBOOUyqPPzmfVD6h_b6TlNgx31Ocv1A-gBSEtFQWjIFgI-NMKu81Rh5QD6UAj85gdTOvrGlixanxS4sK1exAZe0ohZ7Pqh'
-  $key_name = "notification_development"
-
-  $notification_key_1='APA91bEL6cYWvNaG-BwykkGLwveFFm1f2qd4k8wlXbRO5mH2smexxLsIK7TyaXszEamnpAlNv_BwdJr1Ba4tF0GcDAG1bM7BvtwwEcuuIEWjsODDHAbkzS09IIO3dt0rCLwDMp9CIVAs'
-  $key_name_1 = "notification_development_1"
-  $notification_key_2='APA91bHcKucJ3riunfgKeAkNsT2y8phh6053YbiBcCj5hwSK68v-8yb_fEXdi4wXdhRXZOusypdLu8NLUsDrriD6kVS26o-ky2bCyx40uKpQChSbLZklOtEfPc0Mh-YmyHSYUFZ3kC4U'
-  $key_name_2 = "notification_development_2"
-  $notification_key_3='APA91bE0Ae6quqOBA6QI1HrH3QnX0L8QUgB4m_ajNK2MwClV-gITOiN1X4fGKPy4cJ_81CWNJcdGPlxS03mpnptuybe7oJ7t638TxqRkinjg2-pgjMZ7coueeLYw2N484QWZwKbj5QhB'
-  $key_name_3 = "notification_development_3"
-  $notification_key_4='APA91bGckjuPe2KEX2w2hRq1fvbShDNN6GEBwyl4sxONwKWT_0pQpXIR4GArnyx1bgpR4EOZzC6DfGMYqIPQyAeplrS7-vyBeBF8nBRemSODo_TsPxhpPLErVheyDpf2Kox_gG-E47RL'
-  $key_name_4 = "notification_development_4"
-  $notification_key_5='APA91bGfyzxRKHHP8TN8oV8O-9W5qeVZWB50CyyvTYvhHrrVc0VRItZP2OgvuNYkc4k6-Np5wtlF4uTjXJFxy4Ssu8JcVmiAdw4sZ7nPMYYh3u9cQIKwHEB68cw-1LWob1gC4ky2siUn'
-  $key_name_5 = "notification_development_5"
-  # response = $gcm.create(key_name: "notification_development",
-                # project_id: "788763458333",
-                # registration_ids:[cjCiEYvLWU0:APA91bGSgxwSqTVeby98YZCGTed7TgsQQHba8knXyXU8ERPANtDEP21ASNluBm8rpnOROCV1BYMma9PByIVn-Eyk_MwyAfexd80plTAcQNAq_ZmA9PmHHRk0UVudvwZI5vqCq9pgak-N])
-#response = $gcm.remove("notification_development","788763458333","APA91bE54NetTHzd0gymSj51B_lnqvD4JJ3Ygnb9ciGOrtWJBBzOczXSfLGITpGGW7QEXMFGgAnJTPsqcSL0t_rsAiekODvZRSpTiCp-JTY2ZNvdXWnJOajwR3fEw97zuYTuJ294fA8D", ["gjCiEYvLWU0:APA91bGSgxwSqTVeby98YZCGTed7TgsQQHba8knXyXU8ERPANtDEP21ASNluBm8rpnOROCV1BYMma9PByIVn-Eyk_MwyAfexd80plTAcQNAq_ZmA9PmHHRk0UVudvwZI5vqCq9pgak-N"])
-#notification_development_test = APA91bHJrKmFpM0CYgseCvmZXPfp-4Q1BKgsGttyRCd4dolF-UWLS9ovGhZPIa7VvnJf6zC--kKj2g_1sNrWbYzz1pLofExDWPoeaMP9RlEAVnmyGV3NDyu1kMnNhT6CydaScIkT340B
-#$gcm.send_with_notification_key("APA91bE54NetTHzd0gymSj51B_lnqvD4JJ3Ygnb9ciGOrtWJBBzOczXSfLGITpGGW7QEXMFGgAnJTPsqcSL0t_rsAiekODvZRSpTiCp-JTY2ZNvdXWnJOajwR3fEw97zuYTuJ294fA8D",{data:{score: "10"},collapse_key: "admin_notification"})
-#$gcm.create("notification_development_1", "788763458333", [""])
-end
+  $key_name = "notification_production"
+  $notification_key='APA91bFu0joCGDs3U2z-3IHYGa_UosdnAro6nPfMrokcIcYGw8_1PxYx7P-scTxd3Cvld7ISQUCulrqkVQMsHUeqZljStrOjL2jtOnF0XUgw5Bi0xSpB_J1WFVQF1_yjIvvQTE3at-1L'
+  
+  $notification_key_1='APA91bGSbbnXYUNUdjT5DWGEvnq0kqcRMiH7LOTgQ6LOfnXpOdaothMkJUHF4iuA4HLt6ky4k0nOsa-obQBJCdxDDps9Ggw4t3R3niEEJl7PNwopn89s1iSDJVI7f8B4f8P7Ly8r17tR'
+  $key_name_1 = "notification_production_1"
+  $notification_key_2='APA91bHuyFnpJVelWhO2O_s2fv8QqyqEP0lFisUjuMNyko12Ocny1r9pZB-80lkXmTvvFWIta9MeAJaAQEzugQyG6aXN05xdk3KVtPoemwKtH0Hg5dZ7AcqkIPV7h3qF23xT39euAFpC'
+  $key_name_2 = "notification_production_2"
+  $notification_key_3='APA91bHleSL3e2z64MlWArCIhCLdtuqi2Lgma9czFr478cKP1ny-HV4bBFo7fo2GqbSPpyyFAMtW8rR4ykTHyf57swmjcuhAuHzzV86pHiAleuDLXM4CcM-SBI2PbX_hadVb4LpzeR4B'
+  $key_name_3 = "notification_production_3"
+  $notification_key_4='APA91bGJqRqI0K5IHyKNS_gMmb8icoPzgSMceo0kx7Z7qxHp4maUyCZoLjdn7YjJfA51Cm5Iqpym758BOYx8MuCDCdjWRJeYI5r2gBvewEndEy80obzKdp_CjOdDuzDiA6hqqHzwrzxh'
+  $key_name_4 = "notification_production_4"
+  $notification_key_5='APA91bHQjQdF8NRHpxbAgCt0ICa_nPworhi4dansBZ6gY3ufosKBm-AZT2EQMadXrhv21suIsK97hM5MLAEPd7SNZQ963r20FFnQDfglpi6U5qOEHJrcZ276kB00mlNj2qOLCb211CAR'
+  $key_name_5 = "notification_production_5"
+  end

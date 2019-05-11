@@ -21,7 +21,7 @@ test:
   pool: 5
   timeout: 5000
 
-development:
+staging:
   adapter: postgresql
   encoding: unicode
   database: 'phonebook_staging'
