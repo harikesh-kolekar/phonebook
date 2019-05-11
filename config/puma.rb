@@ -3,7 +3,7 @@ workers 2
 threads 1, 6
 
 app_path = File.expand_path("../..", __FILE__)
-shared_dir = "#{app_dir}/"
+shared_dir = "#{app_path}/"
 rails_env = ENV['RAILS_ENV'] || "production"
 environment rails_env
 
