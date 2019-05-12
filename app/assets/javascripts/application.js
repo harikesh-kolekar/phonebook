@@ -20,16 +20,15 @@
 //= require bootstrap-multiselect
  
 $(document).ready(function() {
-      $('#table').DataTable({
-        
-        bProcessing: true,
-          bServerSide: true,
-          sAjaxSource: $('#products').data('source')
-        });
-      $('#example').DataTable()
-     } );
+  $('#table').DataTable({
+    bProcessing: true,
+      bServerSide: true,
+      sAjaxSource: $('#products').data('source')
+    });
+  $('#example').DataTable();
+});
 
 function show_error(message)
-  {
-      $("#error")[0].innerHTML  = '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>' + message + ' </div>';
-  }
+{
+    $("#error")[0].innerHTML  = '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>' + message + ' </div>';
+}
