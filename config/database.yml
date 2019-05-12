@@ -21,6 +21,15 @@ test:
   pool: 5
   timeout: 5000
 
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: 'phonebook_staging'
+  pool: 20
+  username: rails_dev
+  password: Welcome@1234
+  host: localhost
+
 staging:
   adapter: postgresql
   encoding: unicode

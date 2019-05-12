@@ -8,13 +8,13 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 set :branch,         'master'
-set :stage,          :staging
-set :rails_env,      :production
+set :stage,          :development
+set :rails_env,      :development
 set :keep_releases,  3
 server "101.53.157.253", user: "developer", roles: %w{app db web}
 set :deploy_to, "/home/developer/staging/phonebook"
 
-set :unicorn_config_path, "#{fetch(:deploy_to)}/current/config/unicorn/staging.rb"
+# set :unicorn_config_path, "#{fetch(:deploy_to)}/current/config/unicorn/staging.rb"
 
 # role-based syntax
 # ==================
