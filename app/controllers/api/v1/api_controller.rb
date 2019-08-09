@@ -1,6 +1,6 @@
 class Api::V1::ApiController < ActionController::Base
 	# before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
-	before_filter :valid_imei_code, :except  => [:create, :forgotpassword]
+	before_filter :valid_sim_number, :except  => [:create, :forgotpassword]
 	before_filter :debug, :deleted_profile_ids
 	rescue_from ::Exception, with: :error_occurred
 
@@ -32,6 +32,21 @@ class Api::V1::ApiController < ActionController::Base
 				end
 			end
 		end
+
+		def valid_sim_number
+			if params['sim_number'].blank?
+				render :json => {:success => false, :message => "Sim number should not be blank!" } and return
+			else
+				@user = User.where('sim_number1=? or sim_number2=?', params['sim_number'], params['sim_number']).first rescue nil
+				@user.update_attributes!(gcm_api_key: params['gcm_api_key'])if params['gcm_api_key'].present? && @user
+				if @user.nil?
+					render :json => {:success => false, :message => "Sim number is not valid!", :registration_status => false } and return
+				elsif @user.approve_status != 1
+					render :json => {:success => false, :message => "Your Account was not approved Please contact admin.", :registration_status => true} and return			  			
+				end
+			end
+		end
+
 
 		def valid_token
 			if params['authentication_token'].blank?

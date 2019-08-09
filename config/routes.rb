@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'users/:id/edit' => 'users#edit'
   get 'users/:type' => 'users#index', :as => "users"
   post 'users/:user_id/reset_password' => 'users#reset_password', :as => "reset_password_user"
+  get 'users/:user_id/add_to_profile' => 'users#add_to_profile'
   get 'users/:user_id/:status' => 'users#updat_status', :as => "updat_status_user"
   post 'delete_all' => 'home#delete_all'
   get '/articles' => 'profiles#index'
@@ -12,6 +13,9 @@ Rails.application.routes.draw do
   namespace :api do
   namespace :v1 do
       resources :notifications
+      resources :forums, only:[:index, :show, :create, :update] do
+        post 'replay', :on => :collection
+      end
       resources :gallaries
       get "districts" => 'districts#index' 
       get "profiles" => 'profiles#index' 

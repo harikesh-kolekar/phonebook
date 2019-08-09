@@ -76,7 +76,7 @@ gem 'roo'
 gem 'roo-xls'
 gem 'devise'
 gem "paperclip"
-gem 'rabl'
+gem 'rabl', '~>0.11.6'	
 gem 'oj'
 gem 'devise-token_authenticatable'
 gem 'gcm'
@@ -86,3 +86,4 @@ gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'rvm1-capistrano3', require: false
 gem 'capistrano3-unicorn'
+gem 'delayed_job_active_record'

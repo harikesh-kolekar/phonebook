@@ -119,7 +119,7 @@ namespace :app do
         # execute :bundle, :exec, :"puma -C config/puma.rb -e #{fetch(:stage)}"
         # execute 'fuser -k 3000/tcp' rescue "not killed"
         # execute :bundle, :exec, :"rails s -d -e #{fetch(:stage)}" rescue "server not started"
-        invoke 'unicorn:reload'
+        invoke 'unicorn:legacy_restart'
       end
     end
   end

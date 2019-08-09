@@ -66,6 +66,17 @@ def edit
     end
   end
 
+  def add_to_profile
+    begin
+      @user = User.find(params[:user_id])
+      @user.add_to_profile
+      redirect_to :back, notice: 'Added to profile'
+    rescue Exception => e
+      redirect_to :back, notice: 'Something went Wrong Please try again.'
+    end
+
+  end
+
   def updat_status
     
   	begin
@@ -90,7 +101,7 @@ def edit
 	  	end
 	  	redirect_to :back, notice: 'Status Updated'
 	rescue 
-		# p e
+		p e
 		# e.message
 		redirect_to :back, notice: 'Something went Wrong Please try again.'
 	end

@@ -46,6 +46,8 @@
 #  lat                    :string(255)
 #  long                   :string(255)
 #  approved_at            :datetime
+#  sim_number1            :integer
+#  sim_number2            :integer
 #
 # Indexes
 #
@@ -62,13 +64,17 @@ class User < ActiveRecord::Base
    # before_validation :set_mobile_no
    # validates :mobile_no, uniqueness: true, presence: true
    # validates :mobile_no2, uniqueness: true, allow_blank: true
-   validates :imei_code, uniqueness: true, allow_blank: true
+   validates :sim_number1, uniqueness: true, allow_blank: true
+   validates :sim_number2, uniqueness: true, allow_blank: true
    validates :gcm_api_key, uniqueness: true, allow_blank: true
+   after_save :update_profile
+   has_one :profile
+   has_many :forums
 
    has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/profile.png"
-  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
-  has_attached_file :icard, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/i-card.png"
-  validates_attachment_content_type :icard, content_type: /\Aimage\/.*\Z/
+   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
+   has_attached_file :icard, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/i-card.png"
+   validates_attachment_content_type :icard, content_type: /\Aimage\/.*\Z/
 
    # belongs_to :home_taluka, :foreign_key => "home_taluka_id", :class_name=>"Taluka"
    # belongs_to :posting_taluka, :foreign_key => "posting_taluka_id", :class_name=>"Taluka"
@@ -79,13 +85,70 @@ class User < ActiveRecord::Base
    # scope :profile, -> { where('gcm_api_key IS NULL or (gcm_api_key IS NOT NULL and approve_status = 1) ') }
    # scope :profile, -> { where('gcm_api_key IS NULL') }
 
+   def designation_id
+    Designation.find_by(name: self.designation).try(:id)
+   end
+
+   def update_profile
+     return if self.approve_status != 1
+     profile = self.profile || find_profile 
+     return if profile.blank?
+     profile.update(get_profile_attr_from_user)
+     update_profile_images(profile)
+     
+   end
+
+   def add_to_profile
+     profile = Profile.new(get_profile_attr_from_user)
+     update_profile_images(profile)
+   end
+
+   def update_profile_images(profile)
+     profile.photo = self.photo
+     profile.icard = self.icard
+     profile.save!
+   end
+
+   def get_profile_attr_from_user
+      self.attributes.slice(
+      "name",
+      "designation",
+      "education",
+      "phone_no",
+      "mobile_no1",
+      "mobile_no2",
+      "email",
+      "home_taluka_id",
+      "date_of_birth",
+      "date_of_join_dept",
+      "posting_date",
+      "present_post",
+      "home_taluka",
+      "home_district",
+      "posting_district",
+      "posting_taluka",
+      "batch",
+      "other_info",
+      ).merge(user_id: self.id)
+   end
+
+   def find_profile
+      profile = Profile.find_by_email(self.email)
+      return profile if profile.present?
+      profile = Profile.get_user(self.mobile_no1) if self.mobile_no1.present?
+      return profile if profile.present?
+      Profile.get_user(self.mobile_no2) if self.mobile_no2.present?
+   end
+
    # after_save :add_gcm_redistration_id_to_notification_key
 def  set_mobile_no
   self.mobile_no = self.mobile_no1
 end
+
 def self.profile
   Profile.all
 end
+
 def self.import(file)
 	workbook = RubyXL::Parser.parse(file)
 	worksheet = workbook[0]
@@ -125,7 +188,6 @@ def self.import(file)
 
       u.save!
     rescue Exception => e
-      binding.pry
       not_saved<<i+1
     end
   end

@@ -1,5 +1,5 @@
 class Api::V1::UsersController <  Api::V1::ApiController
-	before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
+	# before_filter :valid_token, :except  => [:login, :create, :forgotpassword]
 
 	def login
 			# if params['mobile_no'].blank? || params['password'].blank? 
@@ -125,7 +125,7 @@ class Api::V1::UsersController <  Api::V1::ApiController
 
 	protected
 		def new_user_params
-	      user = params.require(:user).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :gcm_api_key, :home_district, :posting_district, :password, :email, :lat, :long, :imei_code)
+	      user = params.require(:user).permit(:name, :designation, :education, :phone_no, :mobile_no1, :mobile_no2, :home_taluka, :present_post, :posting_taluka, :batch, :other_info, :gcm_api_key, :home_district, :posting_district, :password, :email, :lat, :long, :imei_code, :sim_number1, :sim_number2)
 	      user["date_of_birth"] = string_to_date(params[:user][:date_of_birth]) 
 		  user["date_of_join_dept"] = string_to_date(params[:user][:date_of_join_dept]) 
 		  user["posting_date"] = string_to_date(params[:user][:posting_date]) 
@@ -134,6 +134,14 @@ class Api::V1::UsersController <  Api::V1::ApiController
 
 	    def validate_params
 	    	req_params = []
+	    	if params[:user]['sim_number1'].blank? 
+	    		req_params << 'sim_number1'
+	    	end
+
+	    	if params[:user]['sim_number2'].blank? 
+	    		req_params << 'sim_number2'
+	    	end
+
 	    	if params[:user]['mobile_no1'].blank? 
 	    		req_params << 'mobile_no1'
 	    	end
