@@ -1,7 +1,12 @@
 class Api::V1::ForumsController < Api::V1::ApiController
   def index
-  	@forums = Forum.approved.active.joins(:designations).where("designations.name='#{@user.designation}'").paginate(:page => params[:page]).order('id DESC').uniq
+  	if params[:is_closed].to_i == 1
+  		@forums = Forum.approved.closed.joins(:designations).where("designations.name='#{@user.designation}'").paginate(:page => params[:page]).order('id DESC').uniq
+  	else
+  		@forums = Forum.approved.active.joins(:designations).where("designations.name='#{@user.designation}'").paginate(:page => params[:page]).order('id DESC').uniq
+  	end
   end
+
   def show
   	@forum = Forum.approved.active.find(params[:id])
   	@forum_replays = Forum.approved.active.find(params[:id]).forum_replays.paginate(:page => params[:page]).order('id DESC')
@@ -28,8 +33,13 @@ class Api::V1::ForumsController < Api::V1::ApiController
   end
 
   def replay
-	  forum = @user.forums.active.find(params[:forum_id])
-	  forum.forum_replays.build(user_id: @user.id, answer: params[:answer])
+	forum = @user.forums.active.find(params[:forum_id])
+	forum_replays = forum.forum_replays.build(user_id: @user.id, answer: params[:answer])
+	if forum_replays.save
+	  render json: { success: true }
+	else
+  	  render :json=>{:success => false, :message => forum_replays.errors.full_messages.join(', ') } and return
+  	end
   end
 
   def validate_designation

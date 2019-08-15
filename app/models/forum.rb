@@ -19,4 +19,6 @@ class Forum < ActiveRecord::Base
 
 	scope :approved, -> { where(is_approved: true) }
 	scope :active, -> { where(is_closed: false) }
+	scope :closed, -> { where(is_closed: true) }
+	scope :pending, -> { where(is_approved: false) }
 end

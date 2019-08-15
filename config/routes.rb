@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'users/:user_id/add_to_profile' => 'users#add_to_profile'
   get 'users/:user_id/:status' => 'users#updat_status', :as => "updat_status_user"
   post 'delete_all' => 'home#delete_all'
+  get 'forums/:type' => 'forums#index', :as => "forums"
+  get 'forums/:id/close' => 'forums#close'
+  get 'forums/:id/approve' => 'forums#approve'
   get '/articles' => 'profiles#index'
 
   resources :users
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
   namespace :v1 do
       resources :notifications
       resources :forums, only:[:index, :show, :create, :update] do
-        post 'replay', :on => :collection
+        post 'replay'
       end
       resources :gallaries
       get "districts" => 'districts#index' 
