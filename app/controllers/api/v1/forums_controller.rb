@@ -1,4 +1,5 @@
 class Api::V1::ForumsController < Api::V1::ApiController
+  before_filter :valid_sim_number
   def index
   	if params[:is_closed].to_i == 1
   		@forums = Forum.approved.closed.joins(:designations).where("designations.name='#{@user.designation}'").paginate(:page => params[:page]).order('id DESC').uniq
