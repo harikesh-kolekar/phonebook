@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :api do
   namespace :v1 do
       resources :notifications
+      resources :designations
       resources :forums, only:[:index, :show, :create, :update] do
         post 'replay'
       end
