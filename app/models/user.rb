@@ -46,8 +46,8 @@
 #  lat                    :string(255)
 #  long                   :string(255)
 #  approved_at            :datetime
-#  sim_number1            :integer
-#  sim_number2            :integer
+#  sim_number1            :string(255)
+#  sim_number2            :string(255)
 #
 # Indexes
 #

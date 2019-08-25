@@ -26,7 +26,7 @@ class Api::V1::ForumsController < Api::V1::ApiController
 
   def update
   	forum = @user.forums.active.find(params[:id])
-  	if forum.update(question: params[:question], is_active: params[:is_active])
+  	if forum.update(question: params[:question], is_closed: params[:is_closed])
   		render :json=>{:success => true}
   	else
   		render :json=>{:success => false, :message => forum.errors.full_messages.join(', ') } and return
