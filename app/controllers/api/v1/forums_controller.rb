@@ -16,7 +16,7 @@ class Api::V1::ForumsController < Api::V1::ApiController
   def create
   	valid_sim_number
   	validate_designation
-  	forum = @user.forums.build(question: params[:question], designation_ids: params[:designation_ids]<<@user.designation_id)
+  	forum = @user.forums.build(question: params[:question], description: params[:description], designation_ids: params[:designation_ids]<<@user.designation_id)
   	if forum.save
   		render :json=>{:success => true}
   	else
@@ -26,7 +26,7 @@ class Api::V1::ForumsController < Api::V1::ApiController
 
   def update
   	forum = @user.forums.active.find(params[:id])
-  	if forum.update(question: params[:question], is_closed: params[:is_closed])
+  	if forum.update(question: params[:question], is_closed: params[:is_closed], description: params[:description])
   		render :json=>{:success => true}
   	else
   		render :json=>{:success => false, :message => forum.errors.full_messages.join(', ') } and return
