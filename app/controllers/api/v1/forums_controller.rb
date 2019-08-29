@@ -9,8 +9,8 @@ class Api::V1::ForumsController < Api::V1::ApiController
   end
 
   def show
-  	@forum = Forum.approved.active.find(params[:id])
-  	@forum_replays = Forum.approved.active.find(params[:id]).forum_replays.paginate(:page => params[:page]).order('id DESC')
+  	@forum = Forum.approved.find(params[:id])
+  	@forum_replays = @forum.forum_replays.paginate(:page => params[:page]).order('id DESC')
   end
 
   def create
@@ -25,7 +25,7 @@ class Api::V1::ForumsController < Api::V1::ApiController
   end
 
   def update
-  	forum = @user.forums.active.find(params[:id])
+  	forum = @user.forums.find(params[:id])
   	if forum.update(question: params[:question], is_closed: params[:is_closed], description: params[:description])
   		render :json=>{:success => true}
   	else
@@ -34,7 +34,7 @@ class Api::V1::ForumsController < Api::V1::ApiController
   end
 
   def replay
-	forum = @user.forums.active.find(params[:forum_id])
+	forum = Forum.active.find(params[:forum_id])
 	forum_replays = forum.forum_replays.build(user_id: @user.id, answer: params[:answer])
 	if forum_replays.save
 	  render json: { success: true }
