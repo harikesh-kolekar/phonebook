@@ -9,4 +9,5 @@ node(:forum_designation_ids) { @forum.designation_ids}
 child @forum_replays, :object_root => false do
 	attributes :id, :answer, :created_at, :user_id
 	node(:user_id) { |forum_replay| forum_replay.user.profile.id }
+	node(:is_current_user) { |forum_replay| forum_replay.user == @user }
 end

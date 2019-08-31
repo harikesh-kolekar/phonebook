@@ -14,4 +14,5 @@ class ForumReplay < ActiveRecord::Base
 	belongs_to :forum
 	belongs_to :user
 	validates :forum, :answer, presence: true
+	self.per_page = 10
 end

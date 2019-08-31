@@ -24,6 +24,7 @@ class Forum < ActiveRecord::Base
 	scope :active, -> { where(is_closed: false) }
 	scope :closed, -> { where(is_closed: true) }
 	scope :pending, -> { where(is_approved: false) }
+	self.per_page = 10
 	def update_closed_at
 		self.closed_at = Time.now if self.is_closed == true
 	end
