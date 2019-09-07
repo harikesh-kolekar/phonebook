@@ -29,10 +29,10 @@ private
      
       [
         forum.question,
-        forum.user.name,
-        forum.user.mobile_nos,
-        forum.user.designation,
-        "<img src ='#{forum.user.photo.url(:thumb)}' class='profile_image'>",
+        forum.try(:user).try(:name) ,
+        forum.try(:user).try(:mobile_nos) ,
+        forum.try(:user).try(:designation) ,
+        "<img src ='#{forum.try(:user).try(:photo).try(:url, :thumb) }' class='profile_image'>",
         "<div class='action-glyphicon'>"+action+"</div>"
       ]
     end

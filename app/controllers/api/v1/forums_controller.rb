@@ -20,7 +20,7 @@ class Api::V1::ForumsController < Api::V1::ApiController
   	if forum.save
   		render :json=>{:success => true}
   	else
-  		render :json=>{:success => false, :message => forum.errors.full_messages.join(', ') } and return
+  		render :json=>{:success => false, :message => forum.errors.full_messages.join(', ') } 
   	end
   end
 
@@ -29,7 +29,7 @@ class Api::V1::ForumsController < Api::V1::ApiController
   	if forum.update(question: params[:question], is_closed: params[:is_closed], description: params[:description])
   		render :json=>{:success => true}
   	else
-  		render :json=>{:success => false, :message => forum.errors.full_messages.join(', ') } and return
+  		render :json=>{:success => false, :message => forum.errors.full_messages.join(', ') } 
   	end
   end
 
@@ -39,7 +39,7 @@ class Api::V1::ForumsController < Api::V1::ApiController
 	if forum_replays.save
 	  render json: { success: true }
 	else
-  	  render :json=>{:success => false, :message => forum_replays.errors.full_messages.join(', ') } and return
+  	  render :json=>{:success => false, :message => forum_replays.errors.full_messages.join(', ') } 
   	end
   end
 
