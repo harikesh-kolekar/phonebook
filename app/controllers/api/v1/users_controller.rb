@@ -31,6 +31,9 @@ class Api::V1::UsersController <  Api::V1::ApiController
 			render :json=>check_params and return  
 		end
 	    if @user.update(new_user_params)
+	    	@user.decode_base64_photo(params['user']['photo_data'], params['user']['photo_content_type'], params['user']['photo_original_filename']) unless(params['user']['photo_data'].blank? || params['user']['photo_content_type'].blank? || params['user']['photo_original_filename'].blank?)
+		  	@user.decode_base64_icard(params['user']['icard_data'], params['user']['icard_content_type'], params['user']['icard_original_filename']) unless(params['user']['icard_data'].blank? || params['user']['icard_content_type'].blank? || params['user']['icard_original_filename'].blank?)
+		  	@user.save!
 		  	render :action => 'profile' and return
 		else
 			render :json => { :success => false, :message => "#{@user.errors.full_messages.join(', ')}!"} and return  	
