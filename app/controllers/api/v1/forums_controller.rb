@@ -16,7 +16,8 @@ class Api::V1::ForumsController < Api::V1::ApiController
   def create
   	valid_sim_number
   	validate_designation
-  	forum = @user.forums.build(question: params[:question], description: params[:description], designation_ids: params[:designation_ids]<<@user.designation_id)
+    designations = params[:designation_ids]<<@user.designation_id
+  	forum = @user.forums.build(question: params[:question], description: params[:description], designation_ids: designations.uniq)
   	if forum.save
   		render :json=>{:success => true}
   	else

@@ -23,8 +23,8 @@ private
         user.email,
         user.mobile_nos,
         "<img src ='#{user.photo.url(:thumb)}' class='profile_image'>",
-        "<div class='action-glyphicon'><a href='/profiles/#{user.id}'><i class='fa fa-eye'></i></a> <a  href='/profiles/#{user.id}/edit'><i class='fa fa-pencil'></i></a> <div>",
-        # <a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/profiles/#{user.id}'><i class='fa fa-trash-o'></i></a>
+        "<div class='action-glyphicon'><a href='/profiles/#{user.id}'><i class='fa fa-eye'></i></a> <a  href='/profiles/#{user.id}/edit'><i class='fa fa-pencil'></i></a> \
+        <a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/profiles/#{user.id}'><i class='fa fa-trash-o'></i></a> <div>",
       ]
     end
   end

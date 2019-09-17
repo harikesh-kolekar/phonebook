@@ -98,7 +98,7 @@ def add_deleted_record
 end
 
 def self.get_user(mobile)
-      Profile.where("mobile_no1=? or mobile_no2=? ",mobile, mobile).first
+      Profile.where(user_id: nil).where("mobile_no1=? or mobile_no2=? ",mobile, mobile).first
     end
     def self.convert_string_to_date(str)
 		Date.strptime(str,"%d/%m/%Y") rescue ""

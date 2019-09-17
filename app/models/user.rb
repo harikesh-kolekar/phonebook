@@ -133,7 +133,7 @@ class User < ActiveRecord::Base
    end
 
    def find_profile
-      profile = Profile.find_by_email(self.email)
+      profile = Profile.where(user_id: nil).find_by_email(self.email)
       return profile if profile.present?
       profile = Profile.get_user(self.mobile_no1) if self.mobile_no1.present?
       return profile if profile.present?

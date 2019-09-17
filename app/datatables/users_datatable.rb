@@ -43,10 +43,11 @@ private
         "<img src ='#{user.icard.url(:thumb)}' class='profile_image'>",
         "<img src ='#{user.photo.url(:thumb)}' class='profile_image'>",
         "<div class='action-glyphicon'>"+ profile_user +action+"\
+        <a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/users/#{user.id}'>\
         <i class='fa fa-trash-o'></i></a>\
         <a  href='/users/#{user.id}/edit'>\
         <i class='fa fa-pencil'></i></a></div>"#+"<a href='/profiles/#{user.id}'> <i class='fa fa-eye'></i></a> <a  href='/profiles/#{user.id}/edit'><i class='fa fa-pencil'></i></a> </div>",
-        # <a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='/users/#{user.id}'>\
+        # 
       ]
     end
   end
