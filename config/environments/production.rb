@@ -101,7 +101,7 @@ Rails.application.configure do
 
 
   #GSM Key
-  $gcm = GCM.new("AIzaSyBpYRrZq1e9H3hkHe9AQ3OynCHSKK-oW7c")
+  $gcm = FCM.new("AAAA9BMu98o:APA91bHioubOYtHpYQ56Mb0pbsjrtDUm554u8_3xF3jf4G_R-Ec5rnlVQmo6p1joWJwjRngpLGOdLIJ57nKGYaZzaUo0htgZqLn9EiZOvgQ6N_Ja3Y1z_lwfuljDdp7p3BwrUvuqFlF4")
   $key_name = "notification_production"
   $notification_key='APA91bF_tfsLU7xpIU4wDhe_QqAn1JRhUnAGmgNsYzzUfOiUrHX__AmZRDgcwC2BEqGkJEVBBNGiLx_NdbAQPUhghXqwKXqhDnycqHEcAVgL8fZ9K1Ao08QxsgMTT_ZxonnihsodtHsv'
   
