@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
 
    has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url:  ActionController::Base.helpers.asset_path("profile.png")
    validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
-   has_attached_file :icard, styles: { medium: "300x300>", thumb: "100x100>" }, default_url:  ActionController::Base.helpers.asset_path("/assets/i-card.png")
+   has_attached_file :icard, styles: { medium: "300x300>", thumb: "100x100>" }, default_url:  ActionController::Base.helpers.asset_path("i-card.png")
    validates_attachment_content_type :icard, content_type: /\Aimage\/.*\Z/
 
    # belongs_to :home_taluka, :foreign_key => "home_taluka_id", :class_name=>"Taluka"

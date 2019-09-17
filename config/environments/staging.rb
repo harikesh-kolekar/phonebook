@@ -101,18 +101,18 @@ Rails.application.configure do
 
 
   #GSM Key
-  $gcm = GCM.new("AIzaSyBpYRrZq1e9H3hkHe9AQ3OynCHSKK-oW7c")
-  $key_name = "notification_production"
-  $notification_key='APA91bFu0joCGDs3U2z-3IHYGa_UosdnAro6nPfMrokcIcYGw8_1PxYx7P-scTxd3Cvld7ISQUCulrqkVQMsHUeqZljStrOjL2jtOnF0XUgw5Bi0xSpB_J1WFVQF1_yjIvvQTE3at-1L'
-  
-  $notification_key_1='APA91bGSbbnXYUNUdjT5DWGEvnq0kqcRMiH7LOTgQ6LOfnXpOdaothMkJUHF4iuA4HLt6ky4k0nOsa-obQBJCdxDDps9Ggw4t3R3niEEJl7PNwopn89s1iSDJVI7f8B4f8P7Ly8r17tR'
-  $key_name_1 = "notification_production_1"
-  $notification_key_2='APA91bHuyFnpJVelWhO2O_s2fv8QqyqEP0lFisUjuMNyko12Ocny1r9pZB-80lkXmTvvFWIta9MeAJaAQEzugQyG6aXN05xdk3KVtPoemwKtH0Hg5dZ7AcqkIPV7h3qF23xT39euAFpC'
-  $key_name_2 = "notification_production_2"
-  $notification_key_3='APA91bHleSL3e2z64MlWArCIhCLdtuqi2Lgma9czFr478cKP1ny-HV4bBFo7fo2GqbSPpyyFAMtW8rR4ykTHyf57swmjcuhAuHzzV86pHiAleuDLXM4CcM-SBI2PbX_hadVb4LpzeR4B'
-  $key_name_3 = "notification_production_3"
-  $notification_key_4='APA91bGJqRqI0K5IHyKNS_gMmb8icoPzgSMceo0kx7Z7qxHp4maUyCZoLjdn7YjJfA51Cm5Iqpym758BOYx8MuCDCdjWRJeYI5r2gBvewEndEy80obzKdp_CjOdDuzDiA6hqqHzwrzxh'
-  $key_name_4 = "notification_production_4"
-  $notification_key_5='APA91bHQjQdF8NRHpxbAgCt0ICa_nPworhi4dansBZ6gY3ufosKBm-AZT2EQMadXrhv21suIsK97hM5MLAEPd7SNZQ963r20FFnQDfglpi6U5qOEHJrcZ276kB00mlNj2qOLCb211CAR'
-  $key_name_5 = "notification_production_5"
+  $gcm = FCM.new("AAAA9BMu98o:APA91bHioubOYtHpYQ56Mb0pbsjrtDUm554u8_3xF3jf4G_R-Ec5rnlVQmo6p1joWJwjRngpLGOdLIJ57nKGYaZzaUo0htgZqLn9EiZOvgQ6N_Ja3Y1z_lwfuljDdp7p3BwrUvuqFlF4")
+  $notification_key='APA91bGLHdQ2WRPMTMBWSrjADsWjaxNqxJj6bzJpTCmJUXgCDelnMwT2qMfCTM-j_W9JQeushFjcKMUtqJeTCLN4fvgHQTmBmtvZUDsHfEkk0c_t7WyMXiZOZ9MXPFqZc8ABnDSavFPN'
+  $key_name = "notification_development"
+
+  $notification_key_1='APA91bG0gShL2B8VeSyBBOaExnIrZ0OzRJhKAtlUfdXKO8WO9EvSX7KWMiAM6700C5PIqPtlT7fNUfLomBuFumOsbRBHEBQq-raNmrQ3bCzLCX_ixHYVWh97WD056yqqGJ1QTSUfOUFA'
+  $key_name_1 = "notification_development_1"
+  $notification_key_2='APA91bECR9CwlotJDMcLpxjfSkJ8bDMeTXJFBhrwW91iwcKsbZcc3z-Cg6djdDR6dincN8472136a73Occ61F8FIAx5PJmAvp-1otDuaenTjR6fbdWIpMtc8lchXMYglXv1mi_FPnK7s'
+  $key_name_2 = "notification_development_2"
+  $notification_key_3='APA91bEWBJdUTeEu4yCeZ14kC2ijlxk9z-MDAhkHseCqN5RO7VCawjqT94JoZikxdq8LsP8w1BSlgqOan1IT8CuZ4T2AohO3F33PHvsEggUdEWEoSAKd4nTSNJYY5hl7NatK1cymPuOC'
+  $key_name_3 = "notification_development_3"
+  $notification_key_4='APA91bGGPsjUB5HfPp_x2kAmQjZhlrforV8QsxlIIkG-KXjxFeYpsdC_r5-kIdafap37QDF2PmjbRKWiPwZ9dai4lzV2SM4daSWLuRpfzIwzB1SbkxuS8_OhoATSvn2to4VMI0NbUcaF'
+  $key_name_4 = "notification_development_4"
+  $notification_key_5='APA91bGpmI3avK6I0EXOWvQLrErI5Dr11oLS_wPsR0XL9uirYUZCibNkZ8DhkoFnpPWTXW3F_ZIA7mk0O8vGIZkVLnRCyPwJ6eSqz4Sgvd54miBOijE-fEkXjMNwGJEXvIzddx7HlFtZ'
+  $key_name_5 = "notification_development_5"
   end

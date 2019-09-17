@@ -47,4 +47,14 @@ class Api::V1::ForumsController < Api::V1::ApiController
   	render :json => {:success => false, :message => "You Dont have access to create forum", :registration_status => false } and return if @user.designation.blank? || @user.designation == "Others"
   end
 
+  def close
+    forum = @user.forums.find(params[:id])
+    forum.is_closed = true
+    if forum.save
+      render :json=>{:success => true}
+    else
+      render :json=>{:success => false, :message => forum.errors.full_messages.join(', ') } 
+    end
+  end
+
 end

@@ -23,6 +23,7 @@ gem 'rails', '4.1.4'
   gem 'annotate'
   gem "better_errors"
   gem 'pry'
+  gem 'fcm'
 # end
 
 

@@ -82,6 +82,8 @@ GEM
     erubi (1.8.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    fcm (0.0.6)
+      httparty (~> 0.10, >= 0.10.0)
     gcm (0.1.1)
       httparty
       json
@@ -226,6 +228,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise-token_authenticatable
+  fcm
   gcm
   iconv (~> 1.0.3)
   jbuilder (~> 2.0)

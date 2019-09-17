@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :designations
       resources :forums, only:[:index, :show, :create, :update] do
         post 'replay'
+        get 'close', on: :member
       end
       resources :gallaries
       get "districts" => 'districts#index' 

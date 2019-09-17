@@ -58,25 +58,28 @@ Rails.application.configure do
 
 
 
-  $gcm = GCM.new("AIzaSyBpYRrZq1e9H3hkHe9AQ3OynCHSKK-oW7c")
-  $notification_key='APA91bHbNzqfWHytT8X4ezJ4Drbk-WWqJU4qiKSXVER9eOLBOOUyqPPzmfVD6h_b6TlNgx31Ocv1A-gBSEtFQWjIFgI-NMKu81Rh5QD6UAj85gdTOvrGlixanxS4sK1exAZe0ohZ7Pqh'
+  $gcm = FCM.new("AAAA9BMu98o:APA91bHioubOYtHpYQ56Mb0pbsjrtDUm554u8_3xF3jf4G_R-Ec5rnlVQmo6p1joWJwjRngpLGOdLIJ57nKGYaZzaUo0htgZqLn9EiZOvgQ6N_Ja3Y1z_lwfuljDdp7p3BwrUvuqFlF4")
+  $notification_key='APA91bGLHdQ2WRPMTMBWSrjADsWjaxNqxJj6bzJpTCmJUXgCDelnMwT2qMfCTM-j_W9JQeushFjcKMUtqJeTCLN4fvgHQTmBmtvZUDsHfEkk0c_t7WyMXiZOZ9MXPFqZc8ABnDSavFPN'
   $key_name = "notification_development"
 
-  $notification_key_1='APA91bEL6cYWvNaG-BwykkGLwveFFm1f2qd4k8wlXbRO5mH2smexxLsIK7TyaXszEamnpAlNv_BwdJr1Ba4tF0GcDAG1bM7BvtwwEcuuIEWjsODDHAbkzS09IIO3dt0rCLwDMp9CIVAs'
+  $notification_key_1='APA91bG0gShL2B8VeSyBBOaExnIrZ0OzRJhKAtlUfdXKO8WO9EvSX7KWMiAM6700C5PIqPtlT7fNUfLomBuFumOsbRBHEBQq-raNmrQ3bCzLCX_ixHYVWh97WD056yqqGJ1QTSUfOUFA'
   $key_name_1 = "notification_development_1"
-  $notification_key_2='APA91bHcKucJ3riunfgKeAkNsT2y8phh6053YbiBcCj5hwSK68v-8yb_fEXdi4wXdhRXZOusypdLu8NLUsDrriD6kVS26o-ky2bCyx40uKpQChSbLZklOtEfPc0Mh-YmyHSYUFZ3kC4U'
+  $notification_key_2='APA91bECR9CwlotJDMcLpxjfSkJ8bDMeTXJFBhrwW91iwcKsbZcc3z-Cg6djdDR6dincN8472136a73Occ61F8FIAx5PJmAvp-1otDuaenTjR6fbdWIpMtc8lchXMYglXv1mi_FPnK7s'
   $key_name_2 = "notification_development_2"
-  $notification_key_3='APA91bE0Ae6quqOBA6QI1HrH3QnX0L8QUgB4m_ajNK2MwClV-gITOiN1X4fGKPy4cJ_81CWNJcdGPlxS03mpnptuybe7oJ7t638TxqRkinjg2-pgjMZ7coueeLYw2N484QWZwKbj5QhB'
+  $notification_key_3='APA91bEWBJdUTeEu4yCeZ14kC2ijlxk9z-MDAhkHseCqN5RO7VCawjqT94JoZikxdq8LsP8w1BSlgqOan1IT8CuZ4T2AohO3F33PHvsEggUdEWEoSAKd4nTSNJYY5hl7NatK1cymPuOC'
   $key_name_3 = "notification_development_3"
-  $notification_key_4='APA91bGckjuPe2KEX2w2hRq1fvbShDNN6GEBwyl4sxONwKWT_0pQpXIR4GArnyx1bgpR4EOZzC6DfGMYqIPQyAeplrS7-vyBeBF8nBRemSODo_TsPxhpPLErVheyDpf2Kox_gG-E47RL'
+  $notification_key_4='APA91bGGPsjUB5HfPp_x2kAmQjZhlrforV8QsxlIIkG-KXjxFeYpsdC_r5-kIdafap37QDF2PmjbRKWiPwZ9dai4lzV2SM4daSWLuRpfzIwzB1SbkxuS8_OhoATSvn2to4VMI0NbUcaF'
   $key_name_4 = "notification_development_4"
-  $notification_key_5='APA91bGfyzxRKHHP8TN8oV8O-9W5qeVZWB50CyyvTYvhHrrVc0VRItZP2OgvuNYkc4k6-Np5wtlF4uTjXJFxy4Ssu8JcVmiAdw4sZ7nPMYYh3u9cQIKwHEB68cw-1LWob1gC4ky2siUn'
+  $notification_key_5='APA91bGpmI3avK6I0EXOWvQLrErI5Dr11oLS_wPsR0XL9uirYUZCibNkZ8DhkoFnpPWTXW3F_ZIA7mk0O8vGIZkVLnRCyPwJ6eSqz4Sgvd54miBOijE-fEkXjMNwGJEXvIzddx7HlFtZ'
   $key_name_5 = "notification_development_5"
-  # response = $gcm.create(key_name: "notification_development",
-                # project_id: "788763458333",
-                # registration_ids:[cjCiEYvLWU0:APA91bGSgxwSqTVeby98YZCGTed7TgsQQHba8knXyXU8ERPANtDEP21ASNluBm8rpnOROCV1BYMma9PByIVn-Eyk_MwyAfexd80plTAcQNAq_ZmA9PmHHRk0UVudvwZI5vqCq9pgak-N])
+  # key = ["notification_production", "notification_production_1", "notification_production_2", "notification_production_3", "notification_production_4", "notification_production_5"]
+  # key.each  do |k|
+  #   params = {key_name: k, project_id: "1048293865418", registration_ids:["cOHPlMJ_8LE:APA91bGZp6U_VTStskbEIJFMojVvRSE91qN3ua37UfaL_03gZLX1lyjmpDobk8iRZAZHomw11MimZoUVvmR5j493rZpsC2SRfjuruIf9io4Ts_-VWUEFRjgSw98toH7lLKSQ__2VOQTX"]}
+  #   response = $gcm.create(*params.values)
+  #   p response
+  # end
 #response = $gcm.remove("notification_development","788763458333","APA91bE54NetTHzd0gymSj51B_lnqvD4JJ3Ygnb9ciGOrtWJBBzOczXSfLGITpGGW7QEXMFGgAnJTPsqcSL0t_rsAiekODvZRSpTiCp-JTY2ZNvdXWnJOajwR3fEw97zuYTuJ294fA8D", ["gjCiEYvLWU0:APA91bGSgxwSqTVeby98YZCGTed7TgsQQHba8knXyXU8ERPANtDEP21ASNluBm8rpnOROCV1BYMma9PByIVn-Eyk_MwyAfexd80plTAcQNAq_ZmA9PmHHRk0UVudvwZI5vqCq9pgak-N"])
 #notification_development_test = APA91bHJrKmFpM0CYgseCvmZXPfp-4Q1BKgsGttyRCd4dolF-UWLS9ovGhZPIa7VvnJf6zC--kKj2g_1sNrWbYzz1pLofExDWPoeaMP9RlEAVnmyGV3NDyu1kMnNhT6CydaScIkT340B
-#$gcm.send_with_notification_key("APA91bE54NetTHzd0gymSj51B_lnqvD4JJ3Ygnb9ciGOrtWJBBzOczXSfLGITpGGW7QEXMFGgAnJTPsqcSL0t_rsAiekODvZRSpTiCp-JTY2ZNvdXWnJOajwR3fEw97zuYTuJ294fA8D",{data:{score: "10"},collapse_key: "admin_notification"})
+# $gcm.send_with_notification_key("APA91bGpmI3avK6I0EXOWvQLrErI5Dr11oLS_wPsR0XL9uirYUZCibNkZ8DhkoFnpPWTXW3F_ZIA7mk0O8vGIZkVLnRCyPwJ6eSqz4Sgvd54miBOijE-fEkXjMNwGJEXvIzddx7HlFtZ",{data:{score: "10"},collapse_key: "admin_notification"})
 #$gcm.create("notification_development_1", "788763458333", [""])
 end
