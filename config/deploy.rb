@@ -81,7 +81,7 @@ namespace :deploy do
   end
 
   before 'deploy:migrate', 'deploy:create_db'
-  after :finished, 'deploy:seed'
+  # after :finished, 'deploy:seed'
   after :finished, 'app:restart'
 end
 

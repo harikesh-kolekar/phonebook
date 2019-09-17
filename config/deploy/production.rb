@@ -5,7 +5,7 @@
 set :branch,         'master'
 set :stage,          :production
 set :rails_env,      :production
-set :keep_releases,  3
+set :keep_releases,  2
 server "101.53.157.253", user: "developer", roles: %w{app db web}
 set :deploy_to, "/home/developer/production/phonebook"
 

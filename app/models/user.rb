@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
    validates :sim_number2, uniqueness: true, allow_blank: true
    validates :gcm_api_key, uniqueness: true, allow_blank: true
    after_save :update_profile
-   has_one :profile
+   has_one :profile, dependent: :destroy
    has_many :forums
 
    has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url:  ActionController::Base.helpers.asset_path("profile.png")
