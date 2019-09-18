@@ -93,7 +93,7 @@ def edit
 	  		logger.info response
 	  	elsif user.approve_status == 2 && user.gcm_api_key.present?
 	  		registration_ids = [user.gcm_api_key]
-	  		options = {data: {id: user.id, message: "User is Declined"}, collapse_key: "user_declined"}
+	  		options = {notification: {body: user.name, title: "User is Declined", data: {user_id: user.id,  collapse_key: "user_declined"}}}
 	  		response = $gcm.send(registration_ids, options)
 	  		logger.info "+++++++++++++++++++++++++++++++++GSM send++++++++++++++++++++++++ "
 	  		logger.info response

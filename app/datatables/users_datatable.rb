@@ -38,7 +38,7 @@ private
         user.name,
         user.email,
         user.mobile_nos,
-        user.designation + " :: " + user.gcm_api_key,
+        user.designation,
         user.posting_district,
         "<img src ='#{user.icard.url(:thumb)}' class='profile_image'>",
         "<img src ='#{user.photo.url(:thumb)}' class='profile_image'>",
