@@ -43,8 +43,9 @@ class NotificationsController < AdminController
         i=1
         while i<=page
           registration_ids = user.paginate(:page =>i).collect(&:gcm_api_key)
-          options = {notification: { title: @notification.title } ,data: {id: @notification.id, collapse_key: "admin_notification"}}
-          response = $gcm.send(registration_ids, options)
+          notification = { title: @notification.title } 
+          data = {notification_id: @notification.id, notification_type: "admin_notification", message: @notification.description}
+          response = $gcm.send(registration_ids, notification: notification, data: data)
           logger.info "+++++++++++++++++++++++++++++++++GSM send++++++++++++++++++++++++ "
           logger.info response
           i = i+1
