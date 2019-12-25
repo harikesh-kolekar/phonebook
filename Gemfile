@@ -24,6 +24,7 @@ gem 'rails', '4.1.4'
   gem "better_errors"
   gem 'pry'
   gem 'fcm'
+  gem 'whenever', require: false
 # end
 
 
@@ -70,7 +71,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'will_paginate'
-gem 'rubyXL'
+gem 'activerecord-session_store'
+gem 'rubyXL', "~> 3.4.3"
 gem "spreadsheet"
 gem "iconv", "~> 1.0.3"
 gem 'roo'

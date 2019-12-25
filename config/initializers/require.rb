@@ -1,1 +1,1 @@
-require "#{Rails.root}/lib/background/backup" 
+Dir["#{Rails.root}/lib/background/*.rb"].each {|file| require file }

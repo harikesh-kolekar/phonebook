@@ -45,44 +45,52 @@ class Profile < ActiveRecord::Base
   
 	def self.import(file)
 	workbook = RubyXL::Parser.parse(file)
-	worksheet = workbook[0]
-	data = worksheet.extract_data
+	worksheet = workbook.worksheets[0]
   not_saved = []
-  (1...data.length).each do |i|
+  is_nil = 0
+  row = 0
+  worksheet.each do |i|
+    row = row + 1
+    if i.nil? || i.size == 0
+      is_nil<5 ? is_nil = is_nil+1 : break
+      next
+    end
+    is_nil = 0
+    next if i[0].value == "Full Name"
     begin
-      if(data[i][2].to_s.blank? && data[i][3].to_s.blank? && data[i][4].to_s.blank? && data[i][1].to_s.blank? && data[i][5].to_s.blank? && data[i][6].to_s.blank? && data[i][7].to_s.blank? && data[i][8].to_s.blank? )
+      if(i[2].value.to_s.blank? && i[3].value.to_s.blank? && i[4].value.to_s.blank? && i[1].value.to_s.blank? && i[5].value.to_s.blank? && i[6].value.to_s.blank? && i[7].value.to_s.blank? && i[8].value.to_s.blank? )
         next
       end
-      if(data[i][2].to_s.blank? && data[i][3].to_s.blank? && data[i][4].to_s.blank?)
-        not_saved<<i+1
-        next
+      if(i[2].value.to_s.blank? && i[3].value.to_s.blank? && i[4].value.to_s.blank?)
+        not_saved<<row
+      next
       end  
 
-      u = Profile.find_by_email(data[i][4].to_s) unless data[i][4].to_s.blank?
+      u = Profile.find_by_email(i[4].value.to_s) unless i[4].value.to_s.blank?
       if u 
-      elsif (!data[i][2].to_s.blank? && get_user(data[i][2].to_s)) 
-        u = get_user(data[i][2].to_s)
-      elsif (!data[i][3].to_s.blank? && get_user(data[i][3].to_s))
-        u = get_user(data[i][3].to_s)
+      elsif (!i[2].value.to_s.blank? && get_user(i[2].value.to_s)) 
+        u = get_user(i[2].value.to_s)
+      elsif (!i[3].value.to_s.blank? && get_user(i[3].value.to_s))
+        u = get_user(i[3].value.to_s)
       else
         u = Profile.new()
       end
-      u.name = data[i][0].to_s
-      u.designation = data[i][1].to_s
-      if data[i][2].to_s.blank?
-      		u.mobile_no1 = data[i][3].to_s
+      u.name = i[0].value.to_s
+      u.designation = i[1].value.to_s
+      if i[2].value.to_s.blank?
+      		u.mobile_no1 = i[3].value.to_s
       else
-      	u.mobile_no1 = data[i][2].to_s
-      	u.mobile_no2 = data[i][3].to_s
+      	u.mobile_no1 = i[2].value.to_s
+      	u.mobile_no2 = i[3].value.to_s
       end
-      u.email = data[i][4].to_s
-      u.posting_district = data[i][5].to_s
-      u.home_district = data[i][6].to_s
-      u.date_of_birth = self.convert_string_to_date data[i][7].to_s
-      u.other_info = data[i][8].to_s
+      u.email = i[4].value.to_s
+      u.posting_district = i[5].value.to_s
+      u.home_district = i[6].value.to_s
+      u.date_of_birth = self.convert_string_to_date i[7].value.to_s
+      u.other_info = i[8].value.to_s
       u.save!
     rescue Exception => e
-      not_saved<<i+1
+      not_saved<<row
     end
   end
   return not_saved

@@ -18,6 +18,7 @@ module Rails4Example
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Kolkata'
+    $get_deleted_record_ids = []
     # config.active_job.queue_adapter = :delayed_job
     # config.eager_load = true
     if config.respond_to?(:active_job)

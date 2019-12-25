@@ -19,6 +19,7 @@ private
     notifications.map do |notification|
       filename=notification.attachment.original_filename
       [
+        notification.id,
         notification.title,
         notification.description,
         notification.notification_type,
@@ -51,12 +52,12 @@ private
   end
 
   def sort_column
-    columns = %w[title description notification_type attachment_file_name title]
+    columns = %w[id title description notification_type attachment_file_name title]
     columns[params[:order]["0"][:column].to_i]
   end
 
   def sort_direction
-    params[:order]["0"][:dir] == "desc" ? "desc" : "asc"
+    params[:order]["0"][:dir] == "desc" ? "asc" : "desc"
   end
 end
 
