@@ -88,14 +88,14 @@ def edit
         user.save!
 	  		registration_ids = [user.gcm_api_key]
 	  		notification = {body: user.name, title: "User is Approved"}
-        data = {user_id: user.id,  notification_type: "user_approved"}}
+        data = {user_id: user.id,  notification_type: "user_approved"}
 	  		response = $gcm.send(registration_ids, notification: notification, data: data)
 	  		logger.info "+++++++++++++++++++++++++++++++++GSM send++++++++++++++++++++++++ "
 	  		logger.info response
 	  	elsif user.approve_status == 2 && user.gcm_api_key.present?
 	  		registration_ids = [user.gcm_api_key]
 	  		notification = {body: user.name, title: "User is Declined"} 
-        data = {user_id: user.id,  notification_type: "user_declined"}}
+        data = {user_id: user.id,  notification_type: "user_declined"}
         response = $gcm.send(registration_ids, notification: notification, data: data)
 	  		logger.info "+++++++++++++++++++++++++++++++++GSM send++++++++++++++++++++++++ "
 	  		logger.info response
