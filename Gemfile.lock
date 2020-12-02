@@ -121,7 +121,7 @@ GEM
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (4.2.0)
-    nokogiri (1.9.1)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     oj (3.7.12)
     orm_adapter (0.5.0)
